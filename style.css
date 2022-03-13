@@ -11,22 +11,33 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 .header {
     max-width: 880px;
+    width: 100%;
     min-height: 74px;
     margin: 45px auto 40px;
     display: flex;
-    align-items: flex-start;
-    justify-content: start;
+    flex-direction: column;
+    justify-content: space-between;
     border: 1px solid green;
 }
 
 .header__logo {
     width: 142px;
     height: 33px;
+    margin: 0;
+}
+
+.line {
+    border: none;
+    /*background-color:#545454;*/
+    background-color: pink;
+    height:  1px solid;
+    max-width: 880px;
+    width: 100%;
     margin: 0;
 }
 
