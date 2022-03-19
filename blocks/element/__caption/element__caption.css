@@ -1,0 +1,8 @@
+.caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF;
+  border-radius: 0 0 10px 10px;
+  /*border: 1px solid pink;*/
+}

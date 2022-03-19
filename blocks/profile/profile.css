@@ -8,7 +8,7 @@
   border: 1px solid green;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .profile {
     width: calc(100vw - 38px);
     min-width: 282px;

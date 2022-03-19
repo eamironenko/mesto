@@ -9,7 +9,13 @@
   /*border: 1px solid green;*/
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 768px) {
+  .header {
+    width: calc(100vw - 38px);
+  }
+}
+
+@media screen and (max-width: 425px) {
   .header {
     max-width: 320px;
     max-height: 56px;

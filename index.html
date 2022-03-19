@@ -29,56 +29,70 @@
             <button class="profile__add-button"><img src="./images/addButton.svg"></button>
 
         </section>
-        <section class="elements">           
+        <section class="elements">
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Switzerland_glacier.jpg" class="element__photo" alt="photo">
                 <div class="caption">
                     <h2 class="element__title">Ледники Швейцарии</h2>
-                    <img src="./images/heart.svg" alt="like">
+                    <div class="element__like"></div>
                 </div>
             </article>
         </section>
     </main>
-
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__close-button"></button>
+            <form class="popup__content">
+                <legend class="popup__title">Редактировать профиль</legend>
+                <input type="text" placeholder="Имя и Фамилия" class="popup__form popup__form-name" value="Жак-Ив Кусто"
+                    required>
+                <hr class="popup__line">
+                <input type="text" placeholder="Род деятельности" class="popup__form popup__form-profession"
+                    value="Исследователь океана" required>
+                <hr class="popup__line">
+                <input type="submit" class="popup__save-button" value="Сохранить">
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
   /*border: 1px solid yellow;*/
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
   .profile__info {
       min-width: 282px;
       margin: 22px 0 36px;
