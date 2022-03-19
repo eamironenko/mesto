@@ -1,13 +1,13 @@
 .popup__close-button {
- position: absolute;
- right: -40px;
- top: -40px;
- cursor: pointer;
- border: none;
- height: 32px;
- width: 32px;
- padding: 0;
- background: none;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  cursor: pointer;
+  border: none;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  background: none;
 }
 
 .popup__close-button:before {

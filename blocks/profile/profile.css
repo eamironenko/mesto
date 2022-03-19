@@ -2,7 +2,7 @@
   max-width: 880px;
   width: 100%;
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: space-between;
   margin: 0 auto 51px;
   border: 1px solid green;
