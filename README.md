@@ -33,4 +33,5 @@
   * Браузер: Chrome, Opera, Firefox и др.
 
 # GitHub link
+https://eamironenko.github.io/mesto/index.html
 
