@@ -2,13 +2,13 @@
   display: inline-block;
   width: 24px;
   height: 24px;
-  margin:  0 0 0 5px;
+  margin: 0 0 0 5px;
   padding: 0;
-  background-image: url(./images/pencil.svg);
+  background-image: url(../../../images/pencil.svg);
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #FFF;
-  background-color: black;
+  background-color: #000000;
   cursor: pointer;
 }
 

@@ -8,7 +8,7 @@
   row-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-template-rows: min-content;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
 }
 
 @media screen and (max-width: 768px) {
