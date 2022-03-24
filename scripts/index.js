@@ -4,14 +4,19 @@ const popupElement = document.querySelector('.popup');
 const navButton = document.querySelector('.profile__edit-button');
 const closeButton = popupElement.querySelector('.popup__close-button');
 const ESC_KEY = "Escape";
+const formElement = document.querySelector('.popup__content');
+const currentName = document.querySelector('.profile__name');
+const currentProf = document.querySelector('.profile__subtitle');
+const inputName = formElement.querySelector('.popup__form-name');
+const inputProf = formElement.querySelector('.popup__form-profession');
 
 function openPopup() {
-    popupElement.classList.add('popup__opened');
+    popupElement.classList.add('popup_opened');
     document.addEventListener('keyup', onDocumentKeyUp)
 }
 
 function closePopup() {
-    popupElement.classList.remove('popup__opened');
+    popupElement.classList.remove('popup_opened');
     document.removeEventListener('keyup', onDocumentKeyUp)
 }
 
@@ -26,23 +31,13 @@ closeButton.addEventListener('click', closePopup);
 
 /*Ввод данных и сохранение формы*/
 
-let formElement = document.querySelector('.popup__content');
-let CurrentName = document.querySelector('.profile__name');
-let CurrentProf = document.querySelector('.profile__subtitle');
-console.log(CurrentName);
-console.log(CurrentProf);
-console.log(formElement);
-
-function formSubmit(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
 
-    let InputName = formElement.querySelector('.popup__form-name');
-    let InputProf = formElement.querySelector('.popup__form-profession');
-
-    CurrentName.textContent = InputName.value;
-    CurrentProf.textContent = InputProf.value;
-    console.log(CurrentName);
-    console.log(CurrentProf);
+    currentName.textContent = inputName.value;
+    currentProf.textContent = inputProf.value;
+    console.log(currentName);
+    console.log(currentProf);
 }
 
-formElement.addEventListener('submit', formSubmit);
+formElement.addEventListener('submit', handleProfileFormSubmit);
