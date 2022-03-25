@@ -1,6 +1,6 @@
 .profile__avatar {
-  height: 120px;
-  width: 120px;
+  min-height: 120px;
+  min-width: 120px;
   background-image: url(../../../images/Kusto.svg);
   margin: 0 30px 0 0;
   border-radius: 50%;
