@@ -11,7 +11,7 @@
 <body class="root">
     <header class="header">
         <img src="./images/Logo.svg" alt="Логотип" class="header__logo">
-        <hr class="header__line">
+        <!--<hr class="header__line">-->
     </header>
     <main>
         <section class="profile">
@@ -19,54 +19,54 @@
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто
-                        <button class="profile__edit-button"></button>
+                        <button type="button" class="profile__edit-button"></button>
                     </h1>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
             </div>
-            <button class="profile__add-button"></button>
+            <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
             <article class="element">
                 <img src="./images/Danemark_Nordjyland.jpg" class="element__photo" alt="Дания">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">Дания</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Daydream_Island.jpg" class="element__photo" alt="Кораллы">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">Кораллы</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Hong_Kong_Sar.jpg" class="element__photo" alt="Подводный мир">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">Гон-Конг. Подводный мир.</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Hurghada.jpg" class="element__photo" alt="Хургада">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">Хургада. Побережье.</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/sea_waves.jpg" class="element__photo" alt="Волны">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">Волны.</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="./images/Shoal.jpg" class="element__photo" alt="На корабле">
-                <div class="caption">
+                <div class="element__caption">
                     <h2 class="element__title">На корабле.</h2>
-                    <div class="element__like"></div>
+                    <button type="button" class="element__like"></button>>
                 </div>
             </article>
         </section>
@@ -76,13 +76,11 @@
     </footer>
     <div class="popup">
         <div class="popup__container">
-            <button class="popup__close-button"></button>
+            <button type="button" class="popup__close-button"></button>
             <form class="popup__content">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input type="text" placeholder="Имя и Фамилия" class="popup__input popup__input_type_name" value=""
-                    required>
-                <input type="text" placeholder="Род деятельности" class="popup__input popup__input_type_profession" 
-                    value="" required>                
+                <input type="text" name="profile-name" placeholder="Имя и Фамилия" class="popup__input popup__input_type_name" required>
+                <input type="text" name="profile-profession" placeholder="Род деятельности" class="popup__input popup__input_type_profession" required>
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </form>
         </div>
