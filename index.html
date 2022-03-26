@@ -10,7 +10,7 @@
 
 <body class="root">
     <header class="header">
-        <img src="./images/Logo.svg" alt="Логотип" class="header__logo">       
+        <img src="./images/Logo.svg" alt="Логотип" class="header__logo">
     </header>
     <main>
         <section class="profile">
@@ -77,10 +77,12 @@
     <div class="popup">
         <div class="popup__container">
             <button type="button" class="popup__close-button"></button>
-            <form class="popup__content">
+            <form name="profile-form" class="popup__content">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input type="text" name="profile-name" placeholder="Имя и Фамилия" class="popup__input popup__input_type_name" required>
-                <input type="text" name="profile-profession" placeholder="Род деятельности" class="popup__input popup__input_type_profession" required>
+                <input type="text"  placeholder="Имя и Фамилия"
+                    class="popup__input popup__input_type_name" required>
+                <input type="text" placeholder="Род деятельности"
+                    class="popup__input popup__input_type_profession" required>
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </form>
         </div>
