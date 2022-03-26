@@ -1,7 +1,7 @@
 .profile__add-button {
   display: inline-block;
   background-color: black;
-  background-image:url(../../../images/addButton.svg);
+  background-image:url(../../../images/Add_Button.svg);
   background-repeat: no-repeat;
   background-position: center;
   z-index: 3;
