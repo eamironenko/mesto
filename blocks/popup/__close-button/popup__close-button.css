@@ -1,6 +1,6 @@
 .popup__close-button {
   position: absolute;
-  right: -40px;
+  right: -38px;
   top: -40px;
   cursor: pointer;
   border: none;
@@ -14,7 +14,8 @@
   position: absolute;
   content: '';
   height: 32px;
-  border: 1px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
+  background-color: #FFFFFF;
   top: 0;
   transform: rotate(45deg);
 }
@@ -23,7 +24,8 @@
   position: absolute;
   content: '';
   height: 32px;
-  border: 1px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
+  background-color: #FFFFFF;
   top: 0;
   transform: rotate(-45deg);
 }

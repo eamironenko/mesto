@@ -19,7 +19,6 @@ function openPopup() {
 function closePopup() {
     popupElement.classList.remove('popup_opened');
     document.removeEventListener('keyup', onDocumentKeyUp);
-    formElement.classList.remove('popup_opened');
 }
 
 function onDocumentKeyUp(event){
@@ -40,7 +39,8 @@ function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     currentName.textContent = inputName.value;
     currentProf.textContent = inputProf.value;
+    closePopup();
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
-saveButton.addEventListener('click', closePopup);
+/*saveButton.addEventListener('click', closePopup);*/
