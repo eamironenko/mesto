@@ -32,7 +32,7 @@
                 <img src="./images/Danemark_Nordjyland.jpg" class="element__photo" alt="Дания">
                 <div class="element__caption">
                     <h2 class="element__title">Дания</h2>
-                    <button type="button" class="element__like"></button>
+                    <button type="button" class="element__like element__like_active"></button>
                 </div>
             </article>
             <article class="element">
@@ -70,9 +70,6 @@
                     <button type="button" class="element__like"></button>
                 </div>
             </article>
-
-            <article class="element"></article>
-
         </section>
     </main>
     <footer class="footer">
@@ -95,8 +92,8 @@
             <button type="button" class="popup__close-button"></button>
             <form name="profile-form" class="popup__content">
                 <h3 class="popup__title">Новое место</h3>
-                <input type="text" name="place" placeholder="Название" class="popup__input popup__input_type_place" value="" required>
-                <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" value="" required>
+                <input type="text" name="place" placeholder="Название" class="popup__input popup__input_type_place" required>
+                <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" required>
                 <button type="submit" class="popup__save-button">Создать</button>
             </form>
         </div>
@@ -110,15 +107,15 @@
         </div>
     </div>-->
 
-    <templete id="card-template">
+    <template id="card-template">
         <article class="element">
-            <img src="" class="element__photo" alt="">
+            <img class="element__photo" src="" alt="">
             <div class="element__caption">
                 <h2 class="element__title"></h2>
                 <button type="button" class="element__like"></button>
             </div>
         </article>
-    </templete>
+    </template>
 
     <script src="./scripts/index.js"></script>
     <!--<script src="./scripts/script1.js"></script>-->

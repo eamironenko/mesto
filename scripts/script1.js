@@ -1,31 +1,3 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
-
-
 
 const cardContainer = document.querySelector('.elements');
 const addPopupForm = document.querySelector('.popup__content');
@@ -60,4 +32,58 @@ cardContainer.insertAdjacentHTML('beforebegin', cards.join(''));
 addPopupForm.addEventListener('submit', addCards); 
 
 
+/*function createCard (item) {
+  const cardElement = document.querySelector('.element').cloneNode(true);
+  cardElement.querySelector('.element__title').textContent = item.name;
+  cardElement.querySelector('.element__photo').src = item.link;    
 
+  //cardElement.querySelector('.element__like').addEventListener('click', like);
+  //cardElement.querySelector('.element_delete').addEventListener('click', del);
+  //cardElement.querySelector('.element__photo').addEventListener('click', () => previewPicture(item.name, item.link))
+  return cardElement;
+};
+
+function addCard (newCard, elements) {    
+  elements.append(cardElement);
+  newElement = createCard(newCard);
+} 
+
+function handleAddFormSubmit(evt) {
+  evt.preventDefault();
+    
+  addCard(newCard, elements);
+  inputPlacename.value = '';
+  inputLink.value = '';
+  closePopup(popupAdd); // создание newCard в функцию handler.
+}*/
+
+
+function popupAddCards() {
+  //inputPlace.value = '';
+  //inputLink.value = '';
+  openPopup(popupAdd);   
+};
+
+
+const newCard = {};
+newCard.name = inputPlace.value;
+newCard.link = inputLink.value;
+
+function addCard (newCard, elementsContainer) {
+  const newElement = createCard(newCard);  
+  elementsContainer.prepend(newElement);
+};
+
+function handleAddFormSubmit(evt) {
+  evt.preventDefault();
+  const newCard = {};
+  newCard.name = inputPlace.value,
+  newCard.link = inputLink.value;   
+  addCard(newCard, elementsContainer);
+  inputPlace.value = '';
+  inputLink.value = '';
+  closePopup(popupAdd); // создание newCard в функцию handler.
+}
+
+console.log(newCard.name);
+console.log(newCard.link);
