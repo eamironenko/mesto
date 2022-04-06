@@ -73,7 +73,7 @@ function popupAddCards() {
     openPopup(popupAdd);
 };
 
-//addButton.addEventListener('click', popupAddCards); //это сабмит
+addButton.addEventListener('click', popupAddCards); //это сабмит
 closeButtonCard.addEventListener('click', () => closePopup(popupAdd)); //это крестик
 
 //ШЕСТЬ КАРТОЧЕК "ИЗ КОРОБКИ":
@@ -108,9 +108,9 @@ const initialCards = [
 //ПЕРЕМЕННЫЕ ДЛЯ КАРТОЧЕК
 //-------------------------------------------------------------------
 const elementsContainer = document.querySelector('.elements');
-const element = document.querySelector('.element');
+const element = document.querySelectorAll('.element');
 
-//МАКЕТ КАРТОЧКИ ДЛЯ СТРАНИЦЫ (макет работает, карточки массива добавляются!!!)
+//МАКЕТ КАРТОЧКИ ДЛЯ СТРАНИЦЫ
 //---------------------------------------------------------------------
 function createCard (item) {
     const cardTemplate = document.querySelector('#card-template').content;
@@ -118,13 +118,13 @@ function createCard (item) {
     cardElement.querySelector('.element__title').textContent = item.name;
     cardElement.querySelector('.element__photo').src = item.link;
   
-    /*cardElement.querySelector('.element__like').addEventListener('click', like);
-    cardElement.querySelector('.element_delete').addEventListener('click', del);
+    cardElement.querySelector('.element__like').addEventListener('click', like);
+    /*cardElement.querySelector('.element_delete').addEventListener('click', del);
     cardElement.querySelector('.element__photo').addEventListener('click', () => previewPicture(item.name, item.link))*/
     return cardElement;
   };
 
-//ВСТАВКА КАРТОЧКИ ИЗ МАССИВА (работает!)
+//ВСТАВКА КАРТОЧКИ ИЗ МАССИВА
 //---------------------------------------------------------------------
 initialCards.forEach(function (item) {
     elementsContainer.append(createCard(item));
@@ -161,9 +161,22 @@ formElementAdd.addEventListener('submit', handleAddFormSubmit);
 
 //ЛАЙК
 //----------------------------------------------------------------------
-const like = document.querySelector('.element__like');
+function like(event) {
+    event.target.classList.toggle('element__like_active', true);
+};
 
-/*addLike.forEach(function (item) {
-  likeElement.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active', true);
-  });*/
+element.forEach(function (item) {
+    item.querySelector('.element__like').addEventListener('click', like)
+});
+
+//УДАЛЕНИЕ КАРТОЧКИ
+//----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
