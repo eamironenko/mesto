@@ -86,26 +86,29 @@
             </form>
         </div>
     </div>
-  
-  <div class="popup popup_add">
+
+    <div class="popup popup_add">
         <div class="popup__container">
             <button type="button" class="popup__close-button"></button>
             <form name="profile-form" class="popup__content">
                 <h3 class="popup__title">Новое место</h3>
-                <input type="text" name="place" placeholder="Название" class="popup__input popup__input_type_place" required>
-                <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" required>
+                <input type="text" name="place" placeholder="Название" class="popup__input popup__input_type_place"
+                    required>
+                <input type="text" name="link" placeholder="Ссылка на картинку"
+                    class="popup__input popup__input_type_link" required>
                 <button type="submit" class="popup__save-button">Создать</button>
             </form>
         </div>
     </div>
 
-<!-- <div class="popup popup_image">
-        <div class="popup__container">
-            <img class="popup__image" alt="полноэкранное фото" src="">
-            <p class="popup__image-title"></p>
-            <button class="popup__close-button" type="botton" area-label="закрыть окно"></button>
+    <div class="popup popup_image">
+        <div class="popup__container-photo">
+            <button type="button" class="popup__close-button"></button>
+            <img class="popup__photo" alt="" src="">
+            <p class="popup__photo-title"></p>
         </div>
-    </div>-->
+    </div>
+    </div>
 
     <template id="card-template">
         <article class="element">
@@ -118,7 +121,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
-    <!--<script src="./scripts/script1.js"></script>-->
 </body>
 
 </html>

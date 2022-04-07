@@ -2,7 +2,7 @@
 const popupElement = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
-//const popupImage = document.querySelector('.popup_image');
+const popupImage = document.querySelector('.popup_image');
 
 //Кнопоки открытия:
 const editButton = document.querySelector('.profile__edit-button');
@@ -13,7 +13,7 @@ const ESC_KEY = "Escape";
 const closeButton = document.querySelector('.popup__close-button');
 const closeButtonProfile = popupEdit.querySelector('.popup__close-button');
 const closeButtonCard = popupAdd.querySelector('.popup__close-button');
-//const closeButtonImage = popupImage.querySelector('.popup__close-button');
+const closeButtonImage = popupImage.querySelector('.popup__close-button');
 
 //Редактирование профиля страницы:
 const formElement = document.querySelector('.popup__content');
@@ -116,11 +116,12 @@ function createCard (item) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     cardElement.querySelector('.element__title').textContent = item.name;
+    cardElement.querySelector('.element__photo').alt = item.name;
     cardElement.querySelector('.element__photo').src = item.link;
   
     cardElement.querySelector('.element__like').addEventListener('click', like);
-    /*cardElement.querySelector('.element_delete').addEventListener('click', del);
-    cardElement.querySelector('.element__photo').addEventListener('click', () => previewPicture(item.name, item.link))*/
+    /*cardElement.querySelector('.element__trash').addEventListener('click', deleteCard);*/
+    cardElement.querySelector('.element__photo').addEventListener('click', openImage);
     return cardElement;
   };
 
@@ -136,10 +137,10 @@ const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
 const newCard = {
     name: inputPlace.value,
-    link: inputLink.value
+    link: inputLink.value,
 };
 
-function addCard (newCard) {      
+function addCard (newCard) {
     elementsContainer.prepend(createCard(newCard));
 };
 
@@ -171,12 +172,31 @@ element.forEach(function (item) {
 
 //УДАЛЕНИЕ КАРТОЧКИ
 //----------------------------------------------------------------------
+/*const elementDelete = document.querySelector('.element__trash');
+
+function deleteCard(event) {
+    event.target.closest('.element').remove;
+};
+
+element.forEach(function (item) {
+    item.querySelector('.element_trash').addEventListener('click', deleteCard);
+});*/
 
 
+//уВЕЛИЧЕНИЕ ФОТОГРАФИИ
+//----------------------------------------------------------------------
+const titleImagePopup = popupImage.querySelector('.popup__photo-title');
+const photoPopup = popupImage.querySelector('.popup__photo')
 
+function openImage(event) {
+    const photoLink = event.target.src;
+    const photoTitle = event.target.alt;
+    titleImagePopup.textContent = photoTitle;
+    photoPopup.src = photoLink;
+    openPopup(popupImage);
+};
 
-
-
-
-
-
+element.forEach(function (item) {
+    item.querySelector('.element__photo').addEventListener('click', openImage);
+});
+closeButtonImage.addEventListener('click', () => closePopup(popupImage)); //крестик
