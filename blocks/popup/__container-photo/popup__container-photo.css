@@ -1,15 +1,14 @@
 .popup__container-photo {
   position: relative;
   max-width: 816px;
-  max-height: 562px;
-  width: 75%;
-  height: 75%;
+  max-height: 540px;
+  width: 75vw;
+  /*height: 75vh;*/
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /*border: 1px solid green;*/
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:  minmax(321px, 540px) 1fr max-content(22px);
+  border: 1px solid green;
 }
 
 @media screen and (max-width: 768px) {

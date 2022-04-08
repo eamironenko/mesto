@@ -1,8 +1,9 @@
 .popup__photo {
   margin: 0 auto;
-  height: 96%;
+  padding: 0;
+  height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @media screen and (max-width: 768px) {

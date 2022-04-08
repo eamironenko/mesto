@@ -120,7 +120,7 @@ function createCard (item) {
     cardElement.querySelector('.element__photo').src = item.link;
   
     cardElement.querySelector('.element__like').addEventListener('click', like);
-    /*cardElement.querySelector('.element__trash').addEventListener('click', deleteCard);*/
+    cardElement.querySelector('.element__trash').addEventListener('click', deleteCard);
     cardElement.querySelector('.element__photo').addEventListener('click', openImage);
     return cardElement;
   };
@@ -172,16 +172,15 @@ element.forEach(function (item) {
 
 //УДАЛЕНИЕ КАРТОЧКИ
 //----------------------------------------------------------------------
-/*const elementDelete = document.querySelector('.element__trash');
+const elementDelete = document.querySelector('.element__trash');
 
 function deleteCard(event) {
-    event.target.closest('.element').remove;
+    event.target.closest('.element').remove();
 };
 
 element.forEach(function (item) {
-    item.querySelector('.element_trash').addEventListener('click', deleteCard);
-});*/
-
+    item.querySelector('.element__trash').addEventListener('click', deleteCard);
+});
 
 //уВЕЛИЧЕНИЕ ФОТОГРАФИИ
 //----------------------------------------------------------------------
