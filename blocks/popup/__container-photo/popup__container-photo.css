@@ -7,7 +7,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows:  minmax(321px, 540px) max-content(22px);
+  grid-template-rows:  minmax(321px, 540px) 22px;
 }
 
 @media screen and (max-width: 768px) {
