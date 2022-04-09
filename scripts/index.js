@@ -24,8 +24,14 @@ const inputProf = formElement.querySelector('.popup__input_type_profession');
 
 //Добавление карточки
 //--------------------------------------------------------------
-
-
+const elementsContainer = document.querySelector('.elements');
+const element = document.querySelectorAll('.element');
+const inputPlace = document.querySelector('.popup__input_type_place');
+const inputLink = document.querySelector('.popup__input_type_link');
+const elementDelete = document.querySelector('.element__trash');
+const formElementAdd = popupAdd.querySelector('.popup__content');
+const titleImagePopup = popupImage.querySelector('.popup__photo-title');
+const photoPopup = popupImage.querySelector('.popup__photo')
 
 //Функции открытия и закрытия Popup
 //--------------------------------------------------------------
@@ -47,7 +53,6 @@ function onDocumentKeyUp(event){
 
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //---------------------------------------------------------------
-
 function popupEditProfile() {
     inputName.value = currentName.textContent;
     inputProf.value = currentProf.textContent;
@@ -65,7 +70,6 @@ function handleProfileFormSubmit(evt) {
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
 closeButtonProfile.addEventListener('click', () => closePopup(popupEdit));
-
 
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-----------------------------------------------------------------
@@ -105,11 +109,6 @@ const initialCards = [
     }
   ];
 
-//ПЕРЕМЕННЫЕ ДЛЯ КАРТОЧЕК
-//-------------------------------------------------------------------
-const elementsContainer = document.querySelector('.elements');
-const element = document.querySelectorAll('.element');
-
 //МАКЕТ КАРТОЧКИ ДЛЯ СТРАНИЦЫ
 //---------------------------------------------------------------------
 function createCard (item) {
@@ -118,7 +117,7 @@ function createCard (item) {
     cardElement.querySelector('.element__title').textContent = item.name;
     cardElement.querySelector('.element__photo').alt = item.name;
     cardElement.querySelector('.element__photo').src = item.link;
-  
+
     cardElement.querySelector('.element__like').addEventListener('click', like);
     cardElement.querySelector('.element__trash').addEventListener('click', deleteCard);
     cardElement.querySelector('.element__photo').addEventListener('click', openImage);
@@ -133,8 +132,6 @@ initialCards.forEach(function (item) {
 
 //ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ НА СТРАНИЦУ
 //----------------------------------------------------------------------
-const inputPlace = document.querySelector('.popup__input_type_place');
-const inputLink = document.querySelector('.popup__input_type_link');
 const newCard = {
     name: inputPlace.value,
     link: inputLink.value,
@@ -156,8 +153,6 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd);
 }
 
-//ВСТАВКА ЧЕРЕЗ ФОРМУ
-const formElementAdd = popupAdd.querySelector('.popup__content');
 formElementAdd.addEventListener('submit', handleAddFormSubmit);
 
 //ЛАЙК
@@ -172,8 +167,6 @@ element.forEach(function (item) {
 
 //УДАЛЕНИЕ КАРТОЧКИ
 //----------------------------------------------------------------------
-const elementDelete = document.querySelector('.element__trash');
-
 function deleteCard(event) {
     event.target.closest('.element').remove();
 };
@@ -182,11 +175,8 @@ element.forEach(function (item) {
     item.querySelector('.element__trash').addEventListener('click', deleteCard);
 });
 
-//уВЕЛИЧЕНИЕ ФОТОГРАФИИ
+//УВЕЛИЧЕНИЕ ФОТОГРАФИИ
 //----------------------------------------------------------------------
-const titleImagePopup = popupImage.querySelector('.popup__photo-title');
-const photoPopup = popupImage.querySelector('.popup__photo')
-
 function openImage(event) {
     const photoLink = event.target.src;
     const photoTitle = event.target.alt;
