@@ -2,18 +2,8 @@
   position: relative;
   max-width: 816px;
   max-height: 540px;
-  width: 75vw;
-  height: 75vh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows:  minmax(321px, 540px) 22px;
-}
-
-@media screen and (max-width: 768px) {
-  .popup__container {
-    min-width: 240px;
-    min-height: 321px;
-    margin: 0 auto;
-  }
+  grid-template-columns: 75vw;
+  grid-template-rows:  1fr 22px;
 }
