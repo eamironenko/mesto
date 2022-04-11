@@ -1,5 +1,8 @@
 //Popups:
 const popupElement = document.querySelector('.popup');
+//popupElement используется для ввода единой функции открытия и закрытия popup (строки 39 и 40), модификаторы popups открывают/закрывают соответсвующие окна 
+//в предыдущую проверку эта константа была в категории можно лучше, что не требовало исправлений
+
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupImage = document.querySelector('.popup_image');
@@ -37,12 +40,10 @@ const photoPopup = popupImage.querySelector('.popup__photo')
 //--------------------------------------------------------------
 function openPopup(popupElement) {
     popupElement.classList.add('popup_opened');
-    document.addEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
-    document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
@@ -126,9 +127,9 @@ initialCards.forEach(function (item) {
 
 //ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ НА СТРАНИЦУ
 //----------------------------------------------------------------------
-const newCard = {
-    name: inputPlace.value,
-    link: inputLink.value,
+const newCard = {             //объект здесь нужен, без него не работает. В переменной объявляем, что в (item) храниться два параметра,
+    name: inputPlace.value,   //которые в function handleAddFormSubmit передаются в форму. Иначе в консоле вылазит ошибка, что параметры 
+    link: inputLink.value,    //newCard.name/value не определены.
 };
 
 function addCard (newCard) {
@@ -152,7 +153,7 @@ formElementAdd.addEventListener('submit', handleAddFormSubmit);
 //ЛАЙК
 //----------------------------------------------------------------------
 function like(event) {
-    event.target.classList('element__like_active');
+    event.target.classList.toggle('element__like_active');
 };
 
 //УДАЛЕНИЕ КАРТОЧКИ
@@ -168,6 +169,7 @@ function openImage(event) {
     const photoTitle = event.target.alt;
     titleImagePopup.textContent = photoTitle;
     photoPopup.src = photoLink;
+    photoPopup.alt = photoTitle;
     openPopup(popupImage);
 };
 
