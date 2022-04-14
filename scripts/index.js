@@ -1,8 +1,4 @@
 //Popups:
-const popupElement = document.querySelector('.popup');
-//popupElement используется для ввода единой функции открытия и закрытия popup (строки 39 и 40), модификаторы popups открывают/закрывают соответсвующие окна 
-//в предыдущую проверку эта константа была в категории можно лучше, что не требовало исправлений
-
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupImage = document.querySelector('.popup_image');
@@ -127,19 +123,15 @@ initialCards.forEach(function (item) {
 
 //ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ НА СТРАНИЦУ
 //----------------------------------------------------------------------
-const newCard = {             //объект здесь нужен, без него не работает. В переменной объявляем, что в (item) храниться два параметра,
-    name: inputPlace.value,   //которые в function handleAddFormSubmit передаются в форму. Иначе в консоле вылазит ошибка, что параметры 
-    link: inputLink.value,    //newCard.name/value не определены.
-};
-
 function addCard (newCard) {
     elementsContainer.prepend(createCard(newCard));
 };
 
 //ДОБАВЛЕНИЕ КАРТОЧКИ ЧЕРЕЗ SUBMIT
 //----------------------------------------------------------------------
-function handleAddFormSubmit(evt) {
+function handleAddFormSubmit(evt) {  
     evt.preventDefault();
+    const newCard = {};
     newCard.name = inputPlace.value;
     newCard.link = inputLink.value;
     addCard(newCard);

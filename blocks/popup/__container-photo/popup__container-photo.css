@@ -1,8 +1,7 @@
 .popup__container-photo {
   position: relative;
   max-width: 816px;
-  margin: 0 auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  width: 75vw;
 }
