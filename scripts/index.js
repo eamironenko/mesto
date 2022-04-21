@@ -2,6 +2,7 @@
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupImage = document.querySelector('.popup_image');
+const popupList = Array.from(document.querySelectorAll('.popup'));
 
 //Кнопоки открытия:
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -13,6 +14,7 @@ const buttonClose = document.querySelector('.popup__close-button');
 const buttonCloseProfile = popupEdit.querySelector('.popup__close-button');
 const buttonCloseCard = popupAdd.querySelector('.popup__close-button');
 const buttonCloseImage = popupImage.querySelector('.popup__close-button');
+const ESC_KEY = "Escape";
 
 //Редактирование профиля страницы:
 const formElement = document.querySelector('.popup__content');
@@ -33,7 +35,7 @@ const titleImagePopup = popupImage.querySelector('.popup__photo-title');
 const photoPopup = popupImage.querySelector('.popup__photo')
 
 //Функции открытия и закрытия Popup
-//--------------------------------------------------------------
+//-------------------------------------------------------------
 function openPopup(popupElement) {
     popupElement.classList.add('popup_opened');
 }
@@ -42,8 +44,29 @@ function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
 }
 
+//ЗАКРЫТИЕ КЛИКОМ ПО OVERLAY
+//-------------------------------------------------------------
+popupList.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+  });
+});
+
+//ЗАКРЫТИЕ ПО ESC
+//------------------------------------------------------------
+function onDocumentKeyUp(evt){
+  if (evt.key === ESC_KEY) {
+    const currentPopup = document.querySelector('.popup_opened');
+    closePopup(currentPopup);
+  };
+};
+
+document.addEventListener('keyup', onDocumentKeyUp);
+
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
-//---------------------------------------------------------------
+//------------------------------------------------------------
 function popupEditProfile() {
     inputName.value = currentName.textContent;
     inputProf.value = currentProf.textContent;
@@ -57,22 +80,26 @@ function handleProfileFormSubmit(evt) {
     currentName.textContent = inputName.value;
     currentProf.textContent = inputProf.value;
     closePopup(popupEdit);
-}
+};
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
 buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
-//-----------------------------------------------------------------
+//-------------------------------------------------------------
 function popupAddCards() {
     openPopup(popupAdd);
 };
+
+/*buttonAdd.addEventListener('click', function () {
+  buttonDisabled(popupAdd)
+  openPopup(popupAdd));*/
 
 buttonAdd.addEventListener('click', popupAddCards); //это сабмит
 buttonCloseCard.addEventListener('click', () => closePopup(popupAdd)); //это крестик
 
 //ШЕСТЬ КАРТОЧЕК "ИЗ КОРОБКИ":
-//------------------------------------------------------------------
+//-------------------------------------------------------------
 const initialCards = [
     {
       name: 'Архыз',
@@ -138,6 +165,7 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd);
     inputPlace.value = '';
     inputLink.value = '';
+    /*disableButton(evt.target.querySelector(".popup__save-button"));*/
 }
 
 formElementAdd.addEventListener('submit', handleAddFormSubmit);
