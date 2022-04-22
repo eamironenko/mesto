@@ -8,6 +8,7 @@ const popupList = Array.from(document.querySelectorAll('.popup'));
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonSave = document.querySelector('.popup__save-button');
+const buttonSaveAdd = popupAdd.querySelector('.popup__save-button')
 
 //Кнопоки закрытия:
 const buttonClose = document.querySelector('.popup__close-button');
@@ -32,7 +33,8 @@ const inputLink = document.querySelector('.popup__input_type_link');
 const elementDelete = document.querySelector('.element__trash');
 const formElementAdd = popupAdd.querySelector('.popup__content');
 const titleImagePopup = popupImage.querySelector('.popup__photo-title');
-const photoPopup = popupImage.querySelector('.popup__photo')
+const photoPopup = popupImage.querySelector('.popup__photo');
+
 
 //Функции открытия и закрытия Popup
 //-------------------------------------------------------------
@@ -73,7 +75,10 @@ function popupEditProfile() {
     openPopup(popupEdit);
 };
 
-buttonEdit.addEventListener('click', popupEditProfile);
+buttonEdit.addEventListener('click', () => {
+    resetForm();
+    popupEditProfile();    
+});
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -88,12 +93,9 @@ buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-------------------------------------------------------------
 function popupAddCards() {
+    resetForm();  
     openPopup(popupAdd);
 };
-
-/*buttonAdd.addEventListener('click', function () {
-  buttonDisabled(popupAdd)
-  openPopup(popupAdd));*/
 
 buttonAdd.addEventListener('click', popupAddCards); //это сабмит
 buttonCloseCard.addEventListener('click', () => closePopup(popupAdd)); //это крестик
@@ -165,8 +167,9 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd);
     inputPlace.value = '';
     inputLink.value = '';
-    /*disableButton(evt.target.querySelector(".popup__save-button"));*/
-}
+    disableButton(buttonSaveAdd, config);
+    buttonCloseCard.addEventListener("click", formElementAdd.reset());
+};
 
 formElementAdd.addEventListener('submit', handleAddFormSubmit);
 

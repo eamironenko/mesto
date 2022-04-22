@@ -1,4 +1,3 @@
-
 const сonfig = {
     formSelector: '.popup__content',
     inputSelector: '.popup__input',
@@ -7,15 +6,10 @@ const сonfig = {
     inputErrorClass: 'popup__input-error',
     activeinputErrorClass: 'popup__input-error_active',
     errorClass: 'popup__input_type_error',
-  }; 
-  
-  //выбираем элемент ошибки на основе уникального класса
-  /*const form = document.querySelector('.popup__content') //все формы
-  const formInput = form.querySelector('.popup__input');   //инпут
-  const formError = form.querySelector(`.${formInput.id}-error`); //ошибка*/
+}; 
 
-  //ПОКАЗАТЬ ОШИБКУ:
-  //----------------------------------------------------------------------------
+//ПОКАЗАТЬ ОШИБКУ:
+//----------------------------------------------------------------------------
   const showError = (formElement, inputElement, errorMessage, сonfig) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(сonfig.errorClass); //это красная линия
@@ -23,8 +17,8 @@ const сonfig = {
     errorElement.classList.add(сonfig.activeinputErrorClass) //активирование ошибки
   };
 
-  //СКРЫТЬ ОШИБКУ:
-  //----------------------------------------------------------------------------
+//СКРЫТЬ ОШИБКУ:
+//----------------------------------------------------------------------------
   const hideError = (formElement, inputElement, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(config.errorClass);
@@ -32,8 +26,8 @@ const сonfig = {
     errorElement.textContent = '';
   };
 
-  //ПРОВЕРКА ФОРМЫ: проходит - ошибка отражается
-  //------------------------------------------------------------------------------
+//ПРОВЕРИТЬ ФОРМЫ:
+//------------------------------------------------------------------------------
   const checkInputValidity = (formElement, inputElement, config) => {
     if (!inputElement.validity.valid) {
       showError(formElement, inputElement, inputElement.validationMessage, config);
@@ -43,26 +37,24 @@ const сonfig = {
     }
   };
 
-  //СЛУШАТЕЛЬ НА ПОЛЕ ВВОДА
-  //------------------------------------------------------------------------------
+//СЛУШАТЕЛЬ НА ПОЛЕ ВВОДА
+//------------------------------------------------------------------------------
   const setEventListeners = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));//все инпуты
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    console.log(inputList, formElement);
-
-   /* toggleButtonState(inputList, buttonElement);*/
+       
+    toggleButtonState(inputList, buttonElement, config);
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         checkInputValidity(formElement, inputElement, config);
-        //сверяем состояние кнопки при каждом изменении формы
         toggleButtonState(inputList, buttonElement, config);
       });
     });
   };
 
-  //ОБРАБОТЧИК ФОРМ - добавление обработчиков всем формам
-  //----------------------------------------------------------
+//ОБРАБОТЧИК ФОРМ
+//----------------------------------------------------------
   const  enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
     console.log(formList);
@@ -75,12 +67,8 @@ const сonfig = {
     });
   };
 
-    //ВЫЗОВ ФУНКЦИИ
-   //---------------------------------------------------------------
-   enableValidation(сonfig);
-    
-  //ПРОВЕРКА ВАЛИДНОСТИ ФОРМ
-  //-----------------------------------------------------------
+//ПРОВЕРКА ВАЛИДНОСТИ ФОРМ
+//-----------------------------------------------------------
   const hasInvalidInput = (inputList) => {
     //проходим по массиву
     return inputList.some((inputElement) => {
@@ -88,39 +76,40 @@ const сonfig = {
     });
   };
 
- //ВКЛЮЧЕНИЕ И ВЫКЛЮЧЕНИЕ КНОПКИ
+//ВКЛЮЧЕНИЕ И ВЫКЛЮЧЕНИЕ КНОПКИ
   const toggleButtonState = (inputList, buttonElement, config) => {
     //если есть один невалидный вариант
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(config.inactiveButtonClass);
+      buttonElement.disabled = true;
     } else {
       buttonElement.classList.remove(config.inactiveButtonClass);
+      buttonElement.disabled = false;
     }
   };
 
-//ОЧИСТКА 
+//ОЧИСТКА ФОРМЫ-КАРТОЧКИ 
 //-----------------------------------------------------------------
-  function disableButton(buttonElement, {submitButtonSelector, inactiveButtonClass, ...rest}) {
+    function disableButton(buttonElement, config) {
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
-    buttonElement.classList.add(inactiveButtonClass);
-    /*buttonElement.classList.add(validationConfig.inactiveButtonClass);*/
+  };
+
+    function resetForm(){
+    const errorInputList = Array.from(document.querySelectorAll('.popup__input'));
+    const errorList = Array.from(document.querySelectorAll('.popup__input-error_active'));
+    console.log(errorList);
+    errorList.forEach((errorElement) => {
+      errorElement.classList.remove('popup__input-error_active');
+      errorElement.textContent = '';
+    });
+    console.log(errorInputList);
+    errorInputList.forEach((inputElement) => {
+      inputElement.classList.remove('popup__input_type_error');
+      inputElement.value = '';
+    });
   }
 
- 
-
-  
-
-
-  
-
-
-
-
-
-/*const disableButton = (formElement) => {
-     const buttonList = Array.from(formElement.querySelectorAll('.popup__save-button'));
-     buttonList.forEach((buttonElement) => {
-       buttonElement.classList.add('.popup__save-button_inactive')
-       console.log(buttonElement);
-     })
-   }*/
+//ВЫЗОВ ФУНКЦИИ
+//---------------------------------------------------------------
+  enableValidation(сonfig);
