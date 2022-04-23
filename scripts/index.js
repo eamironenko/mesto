@@ -32,18 +32,29 @@ const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
 const elementDelete = document.querySelector('.element__trash');
 const formElementAdd = popupAdd.querySelector('.popup__content');
+const formElementEdit = popupEdit.querySelector('.popup__content');
 const titleImagePopup = popupImage.querySelector('.popup__photo-title');
 const photoPopup = popupImage.querySelector('.popup__photo');
 
+//ЗАКРЫТИЕ ПО ESC
+//------------------------------------------------------------
+function onDocumentKeyUp(evt){
+  if (evt.key === ESC_KEY) {
+    const currentPopup = document.querySelector('.popup_opened');
+    closePopup(currentPopup);
+  };
+};
 
 //Функции открытия и закрытия Popup
 //-------------------------------------------------------------
 function openPopup(popupElement) {
     popupElement.classList.add('popup_opened');
+    document.addEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
+    document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
 //ЗАКРЫТИЕ КЛИКОМ ПО OVERLAY
@@ -56,17 +67,6 @@ popupList.forEach((popup) => {
   });
 });
 
-//ЗАКРЫТИЕ ПО ESC
-//------------------------------------------------------------
-function onDocumentKeyUp(evt){
-  if (evt.key === ESC_KEY) {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-  };
-};
-
-document.addEventListener('keyup', onDocumentKeyUp);
-
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //------------------------------------------------------------
 function popupEditProfile() {
@@ -76,7 +76,8 @@ function popupEditProfile() {
 };
 
 buttonEdit.addEventListener('click', () => {
-    resetForm();
+    resetForm(formElementEdit, config);
+    formElementEdit.reset();
     popupEditProfile();    
 });
 
@@ -93,7 +94,8 @@ buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-------------------------------------------------------------
 function popupAddCards() {
-    resetForm();  
+    resetForm(formElementAdd, config);
+    formElementAdd.reset();
     openPopup(popupAdd);
 };
 
@@ -168,7 +170,6 @@ function handleAddFormSubmit(evt) {
     inputPlace.value = '';
     inputLink.value = '';
     disableButton(buttonSaveAdd, config);
-    buttonCloseCard.addEventListener("click", formElementAdd.reset());
 };
 
 formElementAdd.addEventListener('submit', handleAddFormSubmit);
