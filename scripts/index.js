@@ -96,10 +96,9 @@ function handleProfileFormSubmit(evt) {
 formElement.addEventListener('submit', handleProfileFormSubmit);
 buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 
-
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-------------------------------------------------------------
-  function popupAddCards() {
+function popupAddCards() {
   formAddCardValidator.resetForm();
   formElementAdd.reset();
   openPopup(popupAdd);
@@ -135,7 +134,7 @@ function handleAddFormSubmit(evt) {
   addCard(newCard);
   closePopup(popupAdd);
   inputPlace.value = '';
-  inputLink.value = '';  
+  inputLink.value = '';
   formAddCardValidator.disableButton();
 };
 
@@ -147,15 +146,20 @@ export function handleOpenImage(title, link) {
   photoPopup.src = link;
   photoPopup.alt = title;
   titleImagePopup.textContent = title;
-  openPopup(popupImage);}
+  openPopup(popupImage);
+}
 
 buttonCloseImage.addEventListener('click', () => closePopup(popupImage)); //крестик
 
 
 //ВАЛИДАЦИЯ ФОРМ:
 //-----------------------------------------------------------------------
-const formProfileValidator = new FormValidator(config, popupEdit);
+const formProfile = popupEdit.querySelector('.popup_profile-form');
+const formAddCard = popupAdd.querySelector('.popup_addCard-form');
+
+const formAddCardValidator = new FormValidator(config, formAddCard);
+formAddCardValidator.enableValidation();
+
+const formProfileValidator = new FormValidator(config, formProfile);
 formProfileValidator.enableValidation();
 
-const formAddCardValidator = new FormValidator(config, popupAdd);
-formAddCardValidator.enableValidation();
