@@ -23,11 +23,9 @@ export class FormValidator {
         this._buttonEdit = config.buttonEdit;
         this._formElement = formElement
 
-        this._formElement = document.querySelector(this._formSelector);
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
-    
 
     _showError = (inputElement, errorMessage) => {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
@@ -54,6 +52,7 @@ export class FormValidator {
 
     _setEventListeners = (inputList, buttonElement) => {
         this._toggleButtonState(inputList, buttonElement);
+
         console.log(this._inputList);
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -64,14 +63,13 @@ export class FormValidator {
     }
 
     enableValidation = () => {
-        
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         })
         console.log(this._formElement);
+
         this._setEventListeners(this._formElement);
         this._toggleButtonState(this._formElement);
-//return this._formElement
     };
 
     _hasInvalidInput = () => {

@@ -19,18 +19,18 @@ const ESC_KEY = "Escape";
 
 //Редактирование профиля страницы:
 const formElement = document.querySelector('.popup__content');
+const formProfile = popupEdit.querySelector('.popup_profile-form');
+const formAddCard = popupAdd.querySelector('.popup_addCard-form');
 const currentName = document.querySelector('.profile__name');
 const currentProf = document.querySelector('.profile__subtitle');
 const inputName = formElement.querySelector('.popup__input_type_name');
 const inputProf = formElement.querySelector('.popup__input_type_profession');
 
 //Добавление карточки
-const cardTemplate = document.querySelector('#card-template').content;
+//const cardTemplate = document.querySelector('#card-template').content;
 const elementsContainer = document.querySelector('.elements');
-const element = document.querySelectorAll('.element');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
-const elementDelete = document.querySelector('.element__trash');
 const formElementAdd = popupAdd.querySelector('.popup__content');
 const formElementEdit = popupEdit.querySelector('.popup__content');
 const titleImagePopup = popupImage.querySelector('.popup__photo-title');
@@ -151,15 +151,10 @@ export function handleOpenImage(title, link) {
 
 buttonCloseImage.addEventListener('click', () => closePopup(popupImage)); //крестик
 
-
 //ВАЛИДАЦИЯ ФОРМ:
 //-----------------------------------------------------------------------
-const formProfile = popupEdit.querySelector('.popup_profile-form');
-const formAddCard = popupAdd.querySelector('.popup_addCard-form');
-
 const formAddCardValidator = new FormValidator(config, formAddCard);
 formAddCardValidator.enableValidation();
 
 const formProfileValidator = new FormValidator(config, formProfile);
 formProfileValidator.enableValidation();
-
