@@ -7,11 +7,8 @@ const popupList = Array.from(document.querySelectorAll('.popup'));
 //Кнопоки открытия:
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
-const buttonSave = document.querySelector('.popup__save-button');
-const buttonSaveAdd = popupAdd.querySelector('.popup__save-button')
 
 //Кнопоки закрытия:
-const buttonClose = document.querySelector('.popup__close-button');
 const buttonCloseProfile = popupEdit.querySelector('.popup__close-button');
 const buttonCloseCard = popupAdd.querySelector('.popup__close-button');
 const buttonCloseImage = popupImage.querySelector('.popup__close-button');
@@ -19,8 +16,8 @@ const ESC_KEY = "Escape";
 
 //Редактирование профиля страницы:
 const formElement = document.querySelector('.popup__content');
-const formProfile = popupEdit.querySelector('.popup_profile-form');
-const formAddCard = popupAdd.querySelector('.popup_addCard-form');
+const formProfile = popupEdit.querySelector('.popup__content_profile-form');
+const formAddCard = popupAdd.querySelector('.popup__content_card-form');
 const currentName = document.querySelector('.profile__name');
 const currentProf = document.querySelector('.profile__subtitle');
 const inputName = formElement.querySelector('.popup__input_type_name');
