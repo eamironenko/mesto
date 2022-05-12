@@ -15,23 +15,25 @@ export class Card {
         return cardElement;
     }
 
-    createCard() {
+    generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
 
-        this._element.querySelector('.element__title').textContent = this._title;
         this._elementImage = this._element.querySelector('.element__photo');
+        this._like = this._element.querySelector('.element__like');
+
+        this._element.querySelector('.element__title').textContent = this._title;
         this._elementImage.alt = this._title;
         this._elementImage.src = this._link;
         return this._element;
     }
 
     _toggleLike() {
-        this._element.querySelector('.element__like').classList.add('element__like_active');
+        this._like.classList.toggle('element__like_active');
     }
 
     _deleteCard() {
-        this._element.querySelector('.element__trash').closest('.element').remove();
+        this._element.remove();
     }
 
     _setEventListeners() {

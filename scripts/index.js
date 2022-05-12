@@ -15,13 +15,13 @@ const buttonCloseImage = popupImage.querySelector('.popup__close-button');
 const ESC_KEY = "Escape";
 
 //Редактирование профиля страницы:
-const formElement = document.querySelector('.popup__content');
-const formProfile = popupEdit.querySelector('.popup__content_profile-form');
-const formAddCard = popupAdd.querySelector('.popup__content_card-form');
+const popupForms = document.querySelector('.popup__content');
+const profileForm = popupEdit.querySelector('.popup__content_profile-form');
+const addCardForm = popupAdd.querySelector('.popup__content_card-form');
 const currentName = document.querySelector('.profile__name');
 const currentProf = document.querySelector('.profile__subtitle');
-const inputName = formElement.querySelector('.popup__input_type_name');
-const inputProf = formElement.querySelector('.popup__input_type_profession');
+const inputName = popupForms.querySelector('.popup__input_type_name');
+const inputProf = popupForms.querySelector('.popup__input_type_profession');
 
 //Добавление карточки
 //const cardTemplate = document.querySelector('#card-template').content;
@@ -35,12 +35,12 @@ const photoPopup = popupImage.querySelector('.popup__photo');
 
 //СКРИПТЫ:
 import { initialCards } from './cardsSet.js';
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import { FormValidator, config } from './FormValidator.js';
 
 //ЗАКРЫТИЕ ПО ESC
 //------------------------------------------------------------
-function onDocumentKeyUp(evt) {
+function handleEscapeKey(evt) {
   if (evt.key === ESC_KEY) {
     const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
@@ -51,12 +51,12 @@ function onDocumentKeyUp(evt) {
 //-------------------------------------------------------------
 export function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
-  document.addEventListener('keyup', onDocumentKeyUp);
+  document.addEventListener('keyup', handleEscapeKey);
 }
 
 export function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
-  document.removeEventListener('keyup', onDocumentKeyUp);
+  document.removeEventListener('keyup', handleEscapeKey);
 }
 
 //ЗАКРЫТИЕ ПО OVERLAY
@@ -71,7 +71,7 @@ popupList.forEach((popup) => {
 
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //------------------------------------------------------------
-function popupEditProfile() {
+function openPopupEditProfile() {
   inputName.value = currentName.textContent;
   inputProf.value = currentProf.textContent;
   openPopup(popupEdit);
@@ -80,7 +80,7 @@ function popupEditProfile() {
 buttonEdit.addEventListener('click', () => {
   formProfileValidator.resetForm();
   formElementEdit.reset();
-  popupEditProfile();
+  openPopupEditProfile();
 });
 
 function handleProfileFormSubmit(evt) {
@@ -90,36 +90,30 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEdit);
 };
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
+popupForms.addEventListener('submit', handleProfileFormSubmit);
 buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-------------------------------------------------------------
-function popupAddCards() {
+function openPopupAddCards() {
   formAddCardValidator.resetForm();
   formElementAdd.reset();
   openPopup(popupAdd);
 };
-buttonAdd.addEventListener('click', popupAddCards); //это сабмит
+buttonAdd.addEventListener('click', openPopupAddCards); //это сабмит
 buttonCloseCard.addEventListener('click', () => closePopup(popupAdd)); //это крестик
 
-
-//ВСТАВКА КАРТОЧКИ ИЗ МАССИВА
+//ВСТАВКА И ДОБАВЛЕНИЕ КАРТОЧЕК
 //-------------------------------------------------------------
-initialCards.forEach((item) => {
+function createCard(item) {
   const card = new Card(item, '#card-template', handleOpenImage);
-  const cardElement = card.createCard();
-  elementsContainer.prepend(cardElement);
-});
+  const cardElement = card.generateCard();
+  return cardElement
+}
 
-//ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ В НАЧАЛО СТРАНИЦЫ 
-//----------------------------------------------------------------------
-function addCard(newCard, cardElement) {
-  const card = new Card(newCard, '#card-template', handleOpenImage);
-  cardElement = card.createCard();
-  elementsContainer.prepend(cardElement);
-  return cardElement;
-};
+initialCards.forEach((item) => {
+  elementsContainer.prepend(createCard(item));
+});
 
 //ДОБАВЛЕНИЕ КАРТОЧКИ ЧЕРЕЗ SUBMIT
 //----------------------------------------------------------------------
@@ -128,10 +122,9 @@ function handleAddFormSubmit(evt) {
   const newCard = {};
   newCard.name = inputPlace.value;
   newCard.link = inputLink.value;
-  addCard(newCard);
+  elementsContainer.prepend(createCard(newCard));
   closePopup(popupAdd);
-  inputPlace.value = '';
-  inputLink.value = '';
+  evt.target.reset();
   formAddCardValidator.disableButton();
 };
 
@@ -150,8 +143,8 @@ buttonCloseImage.addEventListener('click', () => closePopup(popupImage)); //кр
 
 //ВАЛИДАЦИЯ ФОРМ:
 //-----------------------------------------------------------------------
-const formAddCardValidator = new FormValidator(config, formAddCard);
+const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
 
-const formProfileValidator = new FormValidator(config, formProfile);
+const formProfileValidator = new FormValidator(config, profileForm);
 formProfileValidator.enableValidation();
