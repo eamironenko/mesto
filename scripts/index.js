@@ -15,21 +15,17 @@ const buttonCloseImage = popupImage.querySelector('.popup__close-button');
 const ESC_KEY = "Escape";
 
 //Редактирование профиля страницы:
-const popupForms = document.querySelector('.popup__content');
 const profileForm = popupEdit.querySelector('.popup__content_profile-form');
 const addCardForm = popupAdd.querySelector('.popup__content_card-form');
 const currentName = document.querySelector('.profile__name');
 const currentProf = document.querySelector('.profile__subtitle');
-const inputName = popupForms.querySelector('.popup__input_type_name');
-const inputProf = popupForms.querySelector('.popup__input_type_profession');
+const inputName = profileForm.querySelector('.popup__input_type_name');
+const inputProf = profileForm.querySelector('.popup__input_type_profession');
 
 //Добавление карточки
-//const cardTemplate = document.querySelector('#card-template').content;
 const elementsContainer = document.querySelector('.elements');
 const inputPlace = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
-const formElementAdd = popupAdd.querySelector('.popup__content');
-const formElementEdit = popupEdit.querySelector('.popup__content');
 const titleImagePopup = popupImage.querySelector('.popup__photo-title');
 const photoPopup = popupImage.querySelector('.popup__photo');
 
@@ -79,7 +75,7 @@ function openPopupEditProfile() {
 
 buttonEdit.addEventListener('click', () => {
   formProfileValidator.resetForm();
-  formElementEdit.reset();
+  profileForm.reset();
   openPopupEditProfile();
 });
 
@@ -90,14 +86,14 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEdit);
 };
 
-popupForms.addEventListener('submit', handleProfileFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 buttonCloseProfile.addEventListener('click', () => closePopup(popupEdit));
 
 //POPUP: ДОБАВЛЕНИE КАРТОЧКИ (закрытие/открытие)
 //-------------------------------------------------------------
 function openPopupAddCards() {
   formAddCardValidator.resetForm();
-  formElementAdd.reset();
+  addCardForm.reset();
   openPopup(popupAdd);
 };
 buttonAdd.addEventListener('click', openPopupAddCards); //это сабмит
@@ -128,7 +124,7 @@ function handleAddFormSubmit(evt) {
   formAddCardValidator.disableButton();
 };
 
-formElementAdd.addEventListener('submit', handleAddFormSubmit);
+addCardForm.addEventListener('submit', handleAddFormSubmit);
 
 //УВЕЛИЧЕНИЕ ФОТОГРАФИИ
 //----------------------------------------------------------------------
