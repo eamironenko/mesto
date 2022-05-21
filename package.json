@@ -1,0 +1,19 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "Проект - интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo\\Error:no t\u001b[D\u001b[D\u001b[D\u001b[D \u001b[3~\u001b[3~\u001b[C\u001b[Cno test specified\\ && exit 1\"\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\"   \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001becho\\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eamironenko/mesto.git"
+  },
+  "author": "Ekatrina Mironenko\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001berina Mironenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eamironenko/mesto/issues"
+  },
+  "homepage": "https://github.com/eamironenko/mesto#readme"
+}
