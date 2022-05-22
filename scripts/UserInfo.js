@@ -1,16 +1,12 @@
-import {currentName, currentProf} from './cardsSet.js'
-
-//input name это заполняется в инпуте
-//carrent в шапке
+import { currentName, currentProf } from './constants.js'
 
 export default class UserInfo {
-    //управление отображением информации о пользователе на странице
-    constructor(userName, userProfession) {
-        this._userName = userName;
-        this._userProfession = userProfession;
+    constructor(data) {
+        this._userName = data.name;
+        this._userProfession = data.profession;
     }
-//возвращает объект с данными пользователя
-    getUserInfo() {         //здесь должен быть input
+
+    getUserInfo() {
         const userInfo = {
             name: currentName.textContent,
             profession: currentProf.textContent
@@ -18,10 +14,8 @@ export default class UserInfo {
         return userInfo;
     }
 
-    //принимает новые данные пользователя и добавляет на страницу
-    setUserInfo() {      
+    setUserInfo() {
         currentName.textContent = this._userName;
         currentProf.textContent = this._userProfession;
-        console.log(currentName.textContent);
     }
- }
+}
