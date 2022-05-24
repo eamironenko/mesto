@@ -6,6 +6,7 @@
 
 * Figma;
 * Картинки (взяты с сайта https://unsplash.com/);
+* Проект собран при помощи программы Webpack;
 
 **Figma**
 
@@ -23,13 +24,14 @@
   * файловая структура - Nested;
 
 ### JavaScript:
-  * Popup; 
-  * Форма (поля о имя/род деятельности)ж
+  * ООП;
+  * Реализация модульной структуры (инкапсуляция/import/export)
 
 # Requirements
   * VS Studio Code (https://code.visualstudio.com)
   * GitHub (https://github.com)
   * Git Bush (https://git-scm.com/downloads)
+  * Webpack (библиотека пакетов NPM)
   * Браузер: Chrome, Opera, Firefox и др.
 
 # GitHub link
