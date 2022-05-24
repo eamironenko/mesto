@@ -9,6 +9,7 @@ import Popup from './Popup.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import UserInfo from './UserInfo.js';
+import '../page/index.css';
 
 
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
@@ -22,11 +23,7 @@ buttonEdit.addEventListener('click', () => {
   const currentUserInfo = popupUserInfo.getUserInfo();
   inputName.value = currentUserInfo.name;
   inputProf.value = currentUserInfo.profession;
-  //вытаскиваем значения из шапки
-  console.log(inputName.value);
-  console.log(inputProf.value);
-
-  formProfileValidator.resetForm();
+   formProfileValidator.resetForm();
   openPopupProfile.openPopup();
 });
 
@@ -75,7 +72,6 @@ buttonAdd.addEventListener('click', () => {
   addCardForm.reset();
   openPopupAddCard.openPopup();
 });
-
 
 //ЗАПОЛНЕНИЕ ФОРМЫ
 //--------------------------------------------------------------
