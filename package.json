@@ -1,17 +1,17 @@
 {
   "name": "yandex_praktikum",
   "version": "0.0.1",
-  "description": "Проект - интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.",
+  "description": "Mesto",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eamironenko/mesto.git"
   },
-  "author": "Ekatrina Mironenko\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001berina Mironenko",
+  "author": "Ekatrina Mironenko",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/eamironenko/mesto/issues"

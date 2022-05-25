@@ -1,21 +1,19 @@
-import { currentName, currentProf } from './constants.js'
-
 export default class UserInfo {
-    constructor(data) {
-        this._userName = data.name;
-        this._userProfession = data.profession;
+    constructor({profileName, profileProfession} ) {
+        this._userName = document.querySelector(profileName);
+        this._userProfession = document.querySelector(profileProfession);
     }
 
     getUserInfo() {
         const userInfo = {
-            name: currentName.textContent,
-            profession: currentProf.textContent
+            name: this._userName.textContent,
+            profession: this._userProfession.textContent
         }
         return userInfo;
     }
 
-    setUserInfo() {
-        currentName.textContent = this._userName;
-        currentProf.textContent = this._userProfession;
+    setUserInfo(data) {
+        this._userName.textContent = data.name;
+        this._userProfession.textContent = data.profession;
     }
 }
