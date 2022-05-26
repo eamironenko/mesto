@@ -15,12 +15,11 @@ import '../page/index.css';
 
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //______________________________________________________________
-const setInfo = new UserInfo({ profileName, profileProfession });
+const userInfo = new UserInfo({ profileName, profileProfession });
 buttonEdit.addEventListener('click', () => {
-  const currentUserInfo = setInfo.getUserInfo();
+  const currentUserInfo = userInfo.getUserInfo();
   inputName.value = currentUserInfo.name;
-  inputProf.value = currentUserInfo.profession;
-  formProfileValidator.enableValidation();
+  inputProf.value = currentUserInfo.profession;  
   formProfileValidator.resetForm();
   popupWithFormProfile.openPopup();
 });
@@ -32,14 +31,14 @@ const popupWithFormProfile = new PopupWithForm({
       name: formData.name,
       profession: formData.profession
     }
-    setInfo.setUserInfo(userValues);
+    userInfo.setUserInfo(userValues);
     popupWithFormProfile.close();
   }
 });
 
 popupWithFormProfile.setEventListeners();
 
-//ДОБАВЛЕНИЕ КАРТОЧКИ
+// ДОБАВЛЕНИЕ КАРТОЧКИ
 //_______________________________________________________________
 function createCard(item) {
   const card = new Card(item, '#card-template', handleCardClick);
@@ -50,7 +49,7 @@ function createCard(item) {
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    cardList.addItem(createCard(item));
+    cardList.addItem(createCard(item), 'end');
   }
 }, cardsContainer);
 
@@ -67,7 +66,7 @@ buttonAdd.addEventListener('click', () => {
   popupWithFormCard.openPopup();
 });
 
-//ЗАПОЛНЕНИЕ ФОРМЫ
+// ЗАПОЛНЕНИЕ ФОРМЫ
 //_________________________________________________________________
 const popupWithFormCard = new PopupWithForm({
   popupSelector: popupAdd,
@@ -76,18 +75,20 @@ const popupWithFormCard = new PopupWithForm({
       name: formData.place,
       link: formData.link
     }
-    elementsContainer.prepend(createCard(newCard));
+    cardList.addItem(createCard(newCard), 'start');
     formAddCardValidator.disableButton();
     formAddCardValidator.resetForm();
     popupWithFormCard.close();
   }
 });
+
 cardList.renderItems();
 popupWithFormCard.setEventListeners();
 
 
-//ВАЛИДАЦИЯ ФОРМ:
+// ВАЛИДАЦИЯ ФОРМ:
 //__________________________________________________________________
+const formProfileValidator = new FormValidator(config, profileForm);
+formProfileValidator.enableValidation();
 const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
-const formProfileValidator = new FormValidator(config, profileForm);

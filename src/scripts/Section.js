@@ -5,8 +5,12 @@ export default class Section {
         this._container = document.querySelector(containerSelector);
     }
 
-    addItem(element) {
+    addItem(element, place) {
+        if (place === 'start') {
+            this._container.prepend(element); 
+        } else if (place === 'end') {
         this._container.append(element);
+    }
     }
 
     clear() {
