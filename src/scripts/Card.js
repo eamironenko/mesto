@@ -1,5 +1,5 @@
 export class Card {
-    constructor(data, cardSelector, userId, handleCardClick, handleLikeClick) {
+    constructor({data, cardSelector, userId, handleCardClick, handleDeleteClick, handleLikeClick}) {
         this._link = data.link;
         this._title = data.name;
         this._id = data._id;
@@ -10,6 +10,8 @@ export class Card {
 
         this._handleCardClick = handleCardClick;
         this._handleLikeClick = handleLikeClick;
+        this._handleDeleteClick = handleDeleteClick;
+        
         //this._handleLikeClick = handleLikeClick.bind(this);
        // this._handleDeleteClick = handleDeleteClick.bind(this);
         //_______________________
@@ -38,7 +40,7 @@ export class Card {
 
         this._setEventListeners();
         this._handleLikes();
-        //this._handleDeleteBox();
+        this._handleDeleteBox();
         //console.log(this._likeCounter)
         return this._element;
     }    
@@ -49,7 +51,7 @@ export class Card {
         }
     }
     
-    _deleteCard() {
+    deleteCard() {
         this._element.remove();
     }
 
@@ -60,6 +62,11 @@ export class Card {
             };          
         });
     }
+
+   /* _handleLikes() {        
+       return this._dataLikes.some((like) => 
+            like._id === this._userId);
+    }*/
 
     addLike(countLikes) {
         this._like.classList.add('element__like_active');
@@ -73,8 +80,21 @@ export class Card {
 
     _setEventListeners() {
         this._like.addEventListener('click', () => { this._handleLikeClick(this._element) });
-        this._trashBox.addEventListener('click', () => { this._deleteCard() });
-        //this._trashBox.addEventListener('click', () => { this._handleDeleteCard(this) });
+        //this._trashBox.addEventListener('click', () => { this._deleteCard() });
+        this._trashBox.addEventListener('click', () => { this._handleDeleteCard(this._element) });
         this._elementImage.addEventListener('click', () => { this._handleCardClick(this._title, this._link) });
     }
 }
+
+
+
+//запись лайка из data
+/*setLikeCountCard(data) {
+    this._likes = data.likes;
+    this.likeCountCard();
+  }*/
+
+ //*проверка лайка 
+ /* isLiked() {
+    return Boolean(this._likes.find(item => item._id === this._userId));
+  }*/
