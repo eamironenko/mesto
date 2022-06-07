@@ -12,6 +12,10 @@ export default class Api {
         this.headers = parameter.headers;        
     }
 
+    getInintialData() {
+        return Promise.all ([this.getUserInformation(), this.geyInitialCards()])
+    }
+
     getUserInformation() {
         return fetch('https://nomoreparties.co/v1/cohort-42/users/me', {
             headers: this.headers,
@@ -50,28 +54,30 @@ export default class Api {
             .then(handleResponse)
     }
 
-    likeCardElement(idCard) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
+    handleDeleteCard(idCard) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/idCard', {
+            method: 'DELETE',
+            headers: this._headers
+          })
+          .then(handleResponse) 
+      }
+
+    handleLikeCard(idCard) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/idCard', {
             method: 'PUT',
             headers: this.headers,
         })
             .then(handleResponse)
     }
 
+    handleDislikeCard(idCard) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/idCard', {
+          method: 'DELETE',
+          headers: this._headers
+        })
+        .then(handleResponse)
+      };
+
+      
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 import {
   initialCards, popupEdit, popupAdd, popupImage, buttonEdit, buttonAdd,
   profileForm, addCardForm, inputName, inputProf, profileName, profileProfession, 
-  cardsContainer, photoSelector, titleImageSelector
+  cardsContainer, photoSelector, titleImageSelector, avatarPhoto
 } from './constants.js';
 import { Card } from './Card.js';
 import { FormValidator, config } from './FormValidator.js';
@@ -23,8 +23,22 @@ const parameter = {
 
 
 const api = new Api(parameter);
+
+let userId = {}
 api.getUserInformation()
-  .then((res) => {console.log(res)})
+  .then((data) => {
+    console.log(data)
+    userInfo.setUserInfo({
+      name: data.name,
+      profession: data.about
+    });
+    userId = data._id;    
+    //console.log(userId);
+    avatarPhoto.src = data.avatar;
+  })
+  .catch((err) => { console.log(err) })
+
+   
 
 // ВАЛИДАЦИЯ ФОРМ:
 //______________________________________________________________
@@ -62,39 +76,21 @@ buttonEdit.addEventListener('click', () => {
   popupWithFormProfile.openPopup();
 });
 
-//ФУНКЦИИ КАРТОЧЕК
-//_____________________________________________________________
-function handleLikeClick(element, idCard) {
-  if (element.querySelector('.element__like_active')) {
-    api.deleteLikeCardElement(idCard)
-    .then((data) => {
-      element.querySelector('.element__like').classList.remove('element__like_active');
-      element.querySelector('.element__like-counter').textContent = data.likes.length;
-    })
-    .catch((err) => { console.log(err) })
-  } else {
-    api.likeCardElement(idCard)
-    .then((data) => {
-      element.querySelector('.element__like').classList.add('element__like_active');
-      element.querySelector('.element__like-counter').textContent = data.likes.length;
-    })
-    .catch((err) => { console.log(err) })
-  }
-}
-
-function handleCardClick(link, title) {
-  popupWithImage.openImage(title, link);
-}
 
 
+
+
+
+//function handleDeleteClick()
 
 // ДОБАВЛЕНИЕ ИСХОДНОГО МАССИВА КАРТОЧЕК
 //_______________________________________________________________
 function createCard(item) {
-  const card = new Card(item, '#card-template', handleCardClick, handleLikeClick);
+  const card = new Card(item, '#card-template', userId, handleCardClick, handleLikeClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
+
 
 const cardList = new Section({
   items: initialCards,
@@ -138,9 +134,9 @@ const popupWithFormCard = new PopupWithForm({
     popupWithFormCard.close();
   }
 });
-
 cardList.renderItems();
-popupWithFormCard.setEventListeners();  
+popupWithFormCard.setEventListeners();
+
 
 //iMAGE POPUP
 //__________________________________________________________________
@@ -152,3 +148,27 @@ buttonAdd.addEventListener('click', () => {
   addCardForm.reset();
   popupWithFormCard.openPopup();
 });
+
+//ФУНКЦИИ КАРТОЧЕК
+//_____________________________________________________________
+function handleCardClick(link, title) {
+  popupWithImage.openImage(title, link);
+}
+
+function handleLikeClick(thisCard) {
+  if (thisCard.querySelector('.element__like_active')) {
+    api.handleDislikeCard(thisCard._id)
+      .then((data) => {
+        thisCard.deleteLike(data.likes.length)
+      })
+      .catch((err) => { console.log(err) });
+  } else {
+    api.handleLikeCard(thisCard._id)
+      .then((data) => {
+        thisCard.addLike(data.likes.length)
+      })
+      .catch((err) => { console.log(err) })
+  }
+}
+
+

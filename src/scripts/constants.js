@@ -46,3 +46,4 @@ export const profileName = '.profile__name';
 export const profileProfession = '.profile__subtitle';
 export const photoSelector = '.popup__photo';
 export const titleImageSelector = '.popup__photo-title';
+export const avatarPhoto = document.querySelector('.profile__avatar');
