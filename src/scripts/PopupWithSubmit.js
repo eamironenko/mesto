@@ -24,4 +24,12 @@ export default class PopupWithSubmit extends Popup {
         super.closePopup();
         this._formElement.reset;
     }
+
+    renderLoading(isLoading) {
+        if(isLoading) {
+            this._submitButton.textContent = 'Удаление...'
+        } else {
+            this._submitButton.textContent = this._submitButtonValue;
+        }
+    }
 }

@@ -65,6 +65,7 @@ const popupWithFormCard = new PopupWithForm({
   popupSelector: popupAdd,
   handleFormSubmit: (formData) => {
     console.log(formData);
+    popupAdd.renderLoading(true);
     const newCard = {
       name: formData.place,
       link: formData.link
@@ -75,6 +76,9 @@ const popupWithFormCard = new PopupWithForm({
           cardList.addItem(createCard(data), 'start')
       })
       .catch((err) => { console.log(err) })
+      .finally(() => {
+        popupAdd.renderLoading(false);
+      })
 
     formAddCardValidator.disableButton();
     formAddCardValidator.resetForm();
@@ -100,6 +104,7 @@ popupWithImage.closePopup();
 const popupWithFormProfile = new PopupWithForm({
   popupSelector: popupEdit,
   handleFormSubmit: (formData) => {
+    popupEdit.renderLoading(true);
     api.editProfileForm(formData)
       .then((data) => {
         userInfo.setUserInfo({
@@ -109,6 +114,9 @@ const popupWithFormProfile = new PopupWithForm({
         popupWithFormProfile.close();
       })
       .catch((err) => { console.log(err) })
+      .finally(() =>{
+        popupEdit.renderLoading(false);
+      })
   }
 });
 
@@ -120,9 +128,6 @@ buttonEdit.addEventListener('click', () => {
   formProfileValidator.resetForm();
   popupWithFormProfile.openPopup();
 });
-
-
-
 
 
 //ТЕМПЛЕЙТ КАРТОЧКИ
@@ -161,13 +166,12 @@ function createCard(data) {
   return cardElement;
 }
 
-
-
 //DELETE POPUP
 //__________________________________________________________________
 const popupWithSubmit = new PopupWithSubmit({
   popupSelector: popupDelete,
   handleFormSubmit: (data) => { // идет массив с handleDeleteClick
+    popupDelete.renderLoading(true);
     api.handleDeleteCard(data._id)  
       //console.log(data._id)    // id отображается
       .then(() => {
@@ -177,9 +181,13 @@ const popupWithSubmit = new PopupWithSubmit({
         popupWithSubmit.closePopup()
       })
       .catch((err) => { console.log(err) })
+      .finally(() => {
+        popupDelete.renderLoading(false);
+      })
   }
 });
 popupWithSubmit.setEventListeners();
+
 
 // ВАЛИДАЦИЯ ФОРМ:
 //______________________________________________________________
@@ -187,6 +195,11 @@ const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
 const formProfileValidator = new FormValidator(config, profileForm);
 formProfileValidator.enableValidation();
+
+function isLoading(isLoading, popup, text) {
+
+
+}
 
 
 
