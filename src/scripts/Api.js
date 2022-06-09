@@ -42,10 +42,7 @@ export default class Api {
     handleDeleteCard(idCard) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/${idCard}', {    
         method: 'DELETE',
-        headers: {
-            authorization: 'a424a2e2-b3e0-48b0-ade8-2a601f78bd48',
-
-          },
+        headers: this.headers,
             body: JSON.stringify({
                 _id: idCard 
               })

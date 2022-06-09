@@ -53,7 +53,7 @@ export default class Card {
     }
 
     _handleDeleteBox() {
-        if (this._ownerId === this._userId) {
+        if (this._ownerId !== this._userId) {
             this._trashBox.classList.add('element__trash_hidden');
         } 
     }
@@ -87,33 +87,3 @@ export default class Card {
     }
 }
 
-
-
-
-// это удалить ====
-
-//запись лайка из data
-/*setLikeCountCard(data) {
-    this._likes = data.likes;
-    this.likeCountCard();
-  }*/
-
- //*проверка лайка 
- /* isLiked() {
-    return Boolean(this._likes.find(item => item._id === this._userId));
-  }*/
-
-  /* _handleLikes() {        
-       return this._dataLikes.some((like) => 
-            like._id === this._userId);
-    }*/
-/*
-    addLike(countLikes) {
-        this._like.classList.add('element__like_active');
-        this._likeCounter.textContent = countLikes;
-    }
-
-    deleteLike(countLikes) {
-        this._like.classList.remove('element__like_active');
-        this._likeCounter.textContent = countLikes;
-    } */

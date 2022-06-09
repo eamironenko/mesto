@@ -121,23 +121,7 @@ buttonEdit.addEventListener('click', () => {
   popupWithFormProfile.openPopup();
 });
 
-//DELETE POPUP
-//__________________________________________________________________
-const popupWithSubmit = new PopupWithSubmit({
-  popupSelector: popupDelete,
-  handleFormSubmit: (data) => { // идет массив с handleDeleteClick
-    api.handleDeleteCard(data._id)  
-      console.log(data._id)    // id отображается
-      .then(() => {
-        currentCard.deleteCard()
-  })
-      .then(() => {
-        popupWithSubmit.closePopup()
-      })
-      .catch((err) => { console.log(err) })
-  }
-});
-popupWithSubmit.setEventListeners();
+
 
 
 
@@ -179,7 +163,23 @@ function createCard(data) {
 
 
 
-
+//DELETE POPUP
+//__________________________________________________________________
+const popupWithSubmit = new PopupWithSubmit({
+  popupSelector: popupDelete,
+  handleFormSubmit: (data) => { // идет массив с handleDeleteClick
+    api.handleDeleteCard(data._id)  
+      //console.log(data._id)    // id отображается
+      .then(() => {
+        data.deleteCard()
+  })
+      .then(() => {
+        popupWithSubmit.closePopup()
+      })
+      .catch((err) => { console.log(err) })
+  }
+});
+popupWithSubmit.setEventListeners();
 
 // ВАЛИДАЦИЯ ФОРМ:
 //______________________________________________________________

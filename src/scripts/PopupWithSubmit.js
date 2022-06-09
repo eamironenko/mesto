@@ -7,8 +7,8 @@ export default class PopupWithSubmit extends Popup {
         this._formElement = this._popup.querySelector('.popup__content');
     };
 
-    openPopup(card) {
-        this._card = card;
+    openPopup(data) {
+        this._data = data;
         super.openPopup();
     }
 
@@ -16,7 +16,7 @@ export default class PopupWithSubmit extends Popup {
         super._setEventListeners();
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleFormSubmit(this._card );
+            this._handleFormSubmit(this._data );
         })
     }
 
