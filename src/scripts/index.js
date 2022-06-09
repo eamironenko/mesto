@@ -195,7 +195,7 @@ formProfileValidator.enableValidation();
 
 
 
-
+//это удалить
 
 
 //ФУНКЦИИ КАРТОЧЕК - прописаны в темплейте
