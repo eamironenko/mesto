@@ -69,27 +69,28 @@
         </div>
     </div>
     <div class="popup popup_delete">
-        <div class="popup__container">
+        <div class="popup__container-delete">
             <button type="button" class="popup__close-button"></button>
-            <form class="popup__content" name="delete-form" novalidate>
+            <form class="popup__content" name="delete-form">
                 <h3 class="popup__title">Вы уверены?</h3>
                 <button type="submit" class="popup__save-button">Да</button>
             </form>
         </div>
-        <template id="card-template">
-            <article class="element">
-                <button type="button" class="element__trash"></button>
-                <img class="element__photo" src="#" alt="">
-                <div class="element__caption">
-                    <h2 class="element__title"></h2>
-                    <div class="element__like-container">
-                        <button type="button" class="element__like"></button>
-                        <span class="element__like-counter"></span>
-                    </div>
-
+    </div>
+    <template id="card-template">
+        <article class="element">
+            <button type="button" class="element__trash"></button>
+            <img class="element__photo" src="#" alt="">
+            <div class="element__caption">
+                <h2 class="element__title"></h2>
+                <div class="element__like-container">
+                    <button type="button" class="element__like"></button>
+                    <span class="element__like-counter" type="text" name="likeCounter"></span>
                 </div>
-            </article>
-        </template>
-</body>
+    
+            </div>
+        </article>
+    </template>
+    </body>
 
 </html>

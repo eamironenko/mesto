@@ -6,23 +6,19 @@ const handleResponse = (res) => {
 }}
 
 export default class Api {
-    constructor(parameter) {        
-        this.urlUser = parameter.urlUser;
-        this.urlCards = parameter.urlCards;
-        this.headers = parameter.headers;        
+    constructor(options) {
+        this.headers = options.headers;        
     }
 
-    getInintialData() {
-        return Promise.all ([this.getUserInformation(), this.geyInitialCards()])
-    }
 
+//получить данные пользователя(get)
     getUserInformation() {
         return fetch('https://nomoreparties.co/v1/cohort-42/users/me', {
             headers: this.headers,
         })
             .then(handleResponse)
     }
-
+//карточки в виде массива(get)
     getInitialCards() {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
             headers: this.headers,
@@ -30,6 +26,34 @@ export default class Api {
             .then(handleResponse)
     };
 
+//добавть карточку (post)
+    addNewCard(newCard) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
+            method: 'POST',    
+            headers: this.headers,
+            body: JSON.stringify({
+                name: newCard.name,
+                link: newCard.link,
+            }),
+        })
+            .then(handleResponse)
+    }
+//удалить карточку (delete)
+    handleDeleteCard(idCard) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/${idCard}', {    
+        method: 'DELETE',
+        headers: {
+            authorization: 'a424a2e2-b3e0-48b0-ade8-2a601f78bd48',
+
+          },
+            body: JSON.stringify({
+                _id: idCard 
+              })
+          })
+          .then(handleResponse) 
+      }
+
+    //заменить данные пользователя(patch)
     editProfileForm(formData) {
         return fetch('https://nomoreparties.co/v1/cohort-42/users/me', {
             method: 'PATCH',
@@ -42,25 +66,17 @@ export default class Api {
             .then(handleResponse)
     }
 
-    addNewCard(newCard) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
-            method: 'POST',    
-            headers: this.headers,
+    //заменить аватар(patch)
+    editUserAvatar(userData) {
+        return fetch('https://nomoreparties.co/v1/cohort-42/users/me/avatar', {
+            method: 'PATCH',
+            headers: this._headers,
             body: JSON.stringify({
-                name: newCard.name,
-                link: newCard.link,
-            }),
+                avatar: userData.link
+            })
         })
             .then(handleResponse)
     }
-
-    handleDeleteCard(idCard) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/idCard', {
-            method: 'DELETE',
-            headers: this._headers
-          })
-          .then(handleResponse) 
-      }
 
     handleLikeCard(idCard) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/idCard', {
@@ -72,12 +88,9 @@ export default class Api {
 
     handleDislikeCard(idCard) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/idCard', {
-          method: 'DELETE',
-          headers: this._headers
+            method: 'DELETE',
+            headers: this._headers
         })
-        .then(handleResponse)
-      };
-
-      
-
+            .then(handleResponse)
+    };
 }

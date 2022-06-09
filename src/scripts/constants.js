@@ -29,6 +29,8 @@ export const initialCards = [
 export const popupEdit = document.querySelector('.popup_edit');
 export const popupAdd = document.querySelector('.popup_add');
 export const popupImage = document.querySelector('.popup_image');
+export const popupDelete = document.querySelector('.popup_delete');
+
 //Кнопоки открытия:
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
@@ -46,4 +48,4 @@ export const profileName = '.profile__name';
 export const profileProfession = '.profile__subtitle';
 export const photoSelector = '.popup__photo';
 export const titleImageSelector = '.popup__photo-title';
-export const avatarPhoto = document.querySelector('.profile__avatar');
+export const avatarSelector = '.profile__avatar';
