@@ -1,8 +1,8 @@
 import {
   popupEdit, popupAdd, popupImage, popupAvatar, buttonEdit, buttonAdd,
   profileForm, addCardForm, inputName, inputProf, profileName, profileProfession,
-  cardsContainer, photoSelector, titleImageSelector, avatarSelector, popupDelete,
-  buttonAvatar, avatarForm
+  cardsContainer, photoSelector, titleImageSelector, avatarSelector, avatarForm, popupDelete,
+  buttonAvatar, 
 } from './constants.js';
 import Card from './Card.js';
 import { FormValidator, config } from './FormValidator.js';
@@ -26,7 +26,7 @@ const api = new Api({
 });
 
 
-//Работает-!!!!
+//ЗАПРОС ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 //______________________________________________________________
 const userInfo = new UserInfo({ profileName, profileProfession, avatarSelector });
 api.getUserInformation()
@@ -38,13 +38,11 @@ api.getUserInformation()
       avatar: data.avatar
     });
     userId = data._id;
-    //console.log(userId) - выводит id
-    console.log(data.avatar);
   })
   .catch((err) => { console.log(err) })
 
 
-// ДОБАВЛЕНИЕ МАССИВА КАРТОЧЕК - РАБОТАЕТ!!!
+// ДОБАВЛЕНИЕ МАССИВА КАРТОЧЕК
 //_______________________________________________________________
 const cardList = new Section({
   renderer: (item) => {
@@ -53,15 +51,13 @@ const cardList = new Section({
 }, cardsContainer);
 
 api.getInitialCards()
-  .then((data) => {
-    console.log(data) //выводит весь массив   
+  .then((data) => { 
     cardList.renderItems(data);
-    //console.log(data[0].owner._id); //выводит только для одной карточки
   })
   .catch((err) => { console.log(err) })
 
 
-// ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ - РАБОТАЕТ!!!
+// POPUP: ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ 
 //________________________________________________________________
 const popupWithFormCard = new PopupWithForm({
   popupSelector: popupAdd,
@@ -95,10 +91,10 @@ buttonAdd.addEventListener('click', () => {
   popupWithFormCard.openPopup();
 });
 
-//iMAGE POPUP - РАБОТАЕТ !!!!
+//POPUP: iMAGE
 //__________________________________________________________________
 const popupWithImage = new PopupWithImage(popupImage, photoSelector, titleImageSelector);
-popupWithImage.closePopup();
+popupWithImage.close();
 
 
 //POPUP: АВАТАР
@@ -115,17 +111,18 @@ const popupWithFormAvatar = new PopupWithForm({
       .finally(() => {
         popupWithFormAvatar.renderLoading(true);
         popupWithFormAvatar.close();
-      })
+      })    
   }
 })
 popupWithFormAvatar.setEventListeners();
-buttonAvatar.addEventListener('click', () => {
+buttonAvatar.addEventListener('click', () => {  
+  formAvatarValidator.resetForm();
+  avatarForm.reset();
   popupWithFormAvatar.openPopup();
-  popupWithFormCard.close();
 })
 
 
-//POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ - РАБОТАТЕТ!
+//POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //______________________________________________________________
 const popupWithFormProfile = new PopupWithForm({
   popupSelector: popupEdit,
@@ -156,50 +153,13 @@ buttonEdit.addEventListener('click', () => {
 });
 
 
-//ТЕМПЛЕЙТ КАРТОЧКИ
-//_________________________________________________________
-function createCard(data) {
-  const card = new Card({
-    data: data,
-    cardSelector: '#card-template',
-    userId: userId,
-    handleCardClick: (link, title) => {
-      popupWithImage.openImage(title, link);
-    },
-    handleDeleteClick: (data) => {
-      currentCard = card
-      //console.log(data) //здесь выводится массив
-      popupWithSubmit.openPopup(data);
-    },
-
-    handleLikeClick: (card) => {
-      if (card.isLiked()) {
-        api.handleLikeCard(card)
-          .then((card) => {
-            card.setLikeCount(card);
-          })
-          .catch((err) => { console.log(err) })
-      } else {
-        api.handleDislikeCard(card)
-          .then((card) => {
-            card.setLikeCount(card);
-          })
-          .catch((err) => { console.log(err) })
-      }
-    }
-  });
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-
-//DELETE POPUP
+//POPUP: DELETE 
 //__________________________________________________________________
 const popupWithSubmit = new PopupWithSubmit({
   popupSelector: popupDelete,
-  handleFormSubmit: (data) => { // идет массив с handleDeleteClick
+  handleFormSubmit: (data) => {
     popupWithSubmit.renderLoading(true);
     api.handleDeleteCard(data._id)
-      //console.log(data._id)    // id отображается
       .then(() => {
         data.deleteCard()
       })
@@ -215,47 +175,48 @@ const popupWithSubmit = new PopupWithSubmit({
 popupWithSubmit.setEventListeners();
 
 
+//ТЕМПЛЕЙТ КАРТОЧКИ
+//_________________________________________________________
+function createCard(data) {
+  const card = new Card({
+    data: data,
+    cardSelector: '#card-template',
+    userId: userId,
+    handleCardClick: (link, title) => {
+      popupWithImage.openImage(title, link);
+    },
+    handleDeleteClick: (data) => {
+      currentCard = card
+      popupWithSubmit.openPopup(data);
+    },
+
+    handleLikeClick: (data) => {
+      if (!card.isLiked()) {
+        api.handleLikeCard(data._id)
+          .then((data) => {
+            card.setLikeCount(data);
+          })
+          .catch((err) => { console.log(err) })
+      } else {
+        api.handleDislikeCard(data._id)
+          .then((data) => {
+            card.setLikeCount(data);
+          })
+          .catch((err) => { console.log(err) })
+      }
+    }
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+
 // ВАЛИДАЦИЯ ФОРМ:
 //______________________________________________________________
 const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
 const formProfileValidator = new FormValidator(config, profileForm);
 formProfileValidator.enableValidation();
-const formAvatarValidation = new FormValidator(config, avatarForm);
-formAvatarValidation.enableValidation();
-
-
-
-
-
-
-
-
-
-//это удалить
-
-
-//ФУНКЦИИ КАРТОЧЕК - прописаны в темплейте
-//_____________________________________________________________
-/*function handleCardClick(link, title) {
-  popupWithImage.openImage(title, link);
-}*/
-
-/*function handleLikeClick(card) {
-  if (card.querySelector('.element__like_active')) {
-    api.handleDislikeCard(card._id)
-      .then((data) => {
-        thisCard.deleteLike(data.likes.length)
-      })
-      .catch((err) => { console.log(err) });
-  } else {
-    api.handleLikeCard(card._id)
-      .then((data) => {
-        thisCard.addLike(data.likes.length)
-      })
-      .catch((err) => { console.log(err) })
-  }
-};*/
-
-
+const formAvatarValidator = new FormValidator(config, avatarForm);
+formAvatarValidator.enableValidation();
 

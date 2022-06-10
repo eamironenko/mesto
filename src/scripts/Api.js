@@ -84,7 +84,7 @@ export default class Api {
     handleDislikeCard(idCard) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/${idCard}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: this.headers,
         })
             .then(handleResponse)
     };

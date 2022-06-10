@@ -39,7 +39,7 @@ export const buttonAvatar = document.querySelector('.profile__avatar')
 //Редактирование профиля страницы:
 export const profileForm = popupEdit.querySelector('.popup__content_profile-form');
 export const addCardForm = popupAdd.querySelector('.popup__content_card-form');
-export const avatarForm = popupAdd.querySelector('.popup__content_avatar-form') //добавить css
+export const avatarForm = popupAvatar.querySelector('.popup__content_avatar-form');
 export const currentName = document.querySelector('.profile__name');
 export const currentProf = document.querySelector('.profile__subtitle');
 export const inputName = profileForm.querySelector('.popup__input_type_name');
