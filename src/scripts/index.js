@@ -1,9 +1,10 @@
 import {
-  initialCards, popupEdit, popupAdd, popupImage, buttonEdit, buttonAdd,
+  popupEdit, popupAdd, popupImage, popupAvatar, buttonEdit, buttonAdd,
   profileForm, addCardForm, inputName, inputProf, profileName, profileProfession,
-  cardsContainer, photoSelector, titleImageSelector, avatarSelector, popupDelete
+  cardsContainer, photoSelector, titleImageSelector, avatarSelector, popupDelete,
+  buttonAvatar, avatarForm
 } from './constants.js';
-import Card  from './Card.js';
+import Card from './Card.js';
 import { FormValidator, config } from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
@@ -18,7 +19,7 @@ let currentCard = null;
 let userId = null;
 
 const api = new Api({
-    headers: {
+  headers: {
     authorization: 'a424a2e2-b3e0-48b0-ade8-2a601f78bd48',
     'Content-Type': 'application/json'
   }
@@ -38,6 +39,7 @@ api.getUserInformation()
     });
     userId = data._id;
     //console.log(userId) - выводит id
+    console.log(data.avatar);
   })
   .catch((err) => { console.log(err) })
 
@@ -65,7 +67,7 @@ const popupWithFormCard = new PopupWithForm({
   popupSelector: popupAdd,
   handleFormSubmit: (formData) => {
     console.log(formData);
-    popupAdd.renderLoading(true);
+    popupWithFormCard.renderLoading(true);
     const newCard = {
       name: formData.place,
       link: formData.link
@@ -77,7 +79,7 @@ const popupWithFormCard = new PopupWithForm({
       })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        popupAdd.renderLoading(false);
+        popupWithFormCard.renderLoading(false);
       })
 
     formAddCardValidator.disableButton();
@@ -99,23 +101,47 @@ const popupWithImage = new PopupWithImage(popupImage, photoSelector, titleImageS
 popupWithImage.closePopup();
 
 
+//POPUP: АВАТАР
+//_____________________________________________________________
+const popupWithFormAvatar = new PopupWithForm({
+  popupSelector: popupAvatar,
+  handleFormSubmit: (formData) => {
+    popupWithFormAvatar.renderLoading(true);
+    api.editUserAvatar(formData)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+      })
+      .catch((err) => { console.log(err) })
+      .finally(() => {
+        popupWithFormAvatar.renderLoading(true);
+        popupWithFormAvatar.close();
+      })
+  }
+})
+popupWithFormAvatar.setEventListeners();
+buttonAvatar.addEventListener('click', () => {
+  popupWithFormAvatar.openPopup();
+  popupWithFormCard.close();
+})
+
+
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ - РАБОТАТЕТ!
 //______________________________________________________________
 const popupWithFormProfile = new PopupWithForm({
   popupSelector: popupEdit,
   handleFormSubmit: (formData) => {
-    popupEdit.renderLoading(true);
+    popupWithFormProfile.renderLoading(true);
     api.editProfileForm(formData)
       .then((data) => {
         userInfo.setUserInfo({
           name: data.name,
           profession: data.about
         });
-        popupWithFormProfile.close();
       })
       .catch((err) => { console.log(err) })
-      .finally(() =>{
-        popupEdit.renderLoading(false);
+      .finally(() => {
+        popupWithFormProfile.renderLoading(false);
+        popupWithFormProfile.close();
       })
   }
 });
@@ -142,7 +168,7 @@ function createCard(data) {
     },
     handleDeleteClick: (data) => {
       currentCard = card
-      console.log(data) //здесь выводится массив
+      //console.log(data) //здесь выводится массив
       popupWithSubmit.openPopup(data);
     },
 
@@ -171,18 +197,18 @@ function createCard(data) {
 const popupWithSubmit = new PopupWithSubmit({
   popupSelector: popupDelete,
   handleFormSubmit: (data) => { // идет массив с handleDeleteClick
-    popupDelete.renderLoading(true);
-    api.handleDeleteCard(data._id)  
+    popupWithSubmit.renderLoading(true);
+    api.handleDeleteCard(data._id)
       //console.log(data._id)    // id отображается
       .then(() => {
         data.deleteCard()
-  })
+      })
       .then(() => {
         popupWithSubmit.closePopup()
       })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        popupDelete.renderLoading(false);
+        popupWithSubmit.renderLoading(false);
       })
   }
 });
@@ -195,11 +221,9 @@ const formAddCardValidator = new FormValidator(config, addCardForm);
 formAddCardValidator.enableValidation();
 const formProfileValidator = new FormValidator(config, profileForm);
 formProfileValidator.enableValidation();
+const formAvatarValidation = new FormValidator(config, avatarForm);
+formAvatarValidation.enableValidation();
 
-function isLoading(isLoading, popup, text) {
-
-
-}
 
 
 
@@ -235,61 +259,3 @@ function isLoading(isLoading, popup, text) {
 
 
 
-/*function handleDeleteClick(card) {
-  PopupWithSubmit.openPopup(card)
-}*/
-
-/*function createCard(item) {
-  const card = new Card(item, '#card-template', userId, handleCardClick, handleLikeClick, handleDeleteClick);
-  const cardElement = card.generateCard();
-  return cardElement;
-}*/
-
-//-------------------------------------
-
-/*api.getUserInformation()
-  .then((data) => {
-    console.log(data)
-    userInfo.setUserInfo({
-      name: data.name,
-      profession: data.about
-    });
-    userId = data._id;
-    //console.log(userId);
-    avatarPhoto.src = data.avatar;
-  })
-  .catch((err) => { console.log(err) }) */
-
-  /*getInintialData() {
-    return Promise.all ([this.getUserInformation(), this.geyInitialCards()])
-}*/
-/*api.getInitialCards() //код повторяется
-  .then((data) => {
-    console.log(data)
-    const section = new Section({
-      items: data,
-      renderer: (item) => {
-        section.addItem(createCard(item), 'end');
-      }
-    }, cardsContainer);
-    section.renderItems();
-  })
-  .catch((err) => { console.log(err) })*/
-
-
-  /*Promise.all([api.getUserInformation(), api.getInitialCards()])
-  .then((data) => {
-    console.log(data)
-    const userValues = {
-      name: data[0].name,
-      profession: data[0].about,
-      avatar: data[0].avatar
-    }
-    userInfo.setUserInfo(userValues);
-    userId = data[0]._id;
-    cardList.renderItems(data[1]);
-    console.log(userId);
-  })
-  .catch((err) => {
-    console.log(`ошибка ${err}`);;
-  })*/

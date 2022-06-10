@@ -5,8 +5,18 @@
   margin: 0 30px 0 0;
   border-radius: 50%;
 }
+
 @media screen and (max-width: 768px) {
   .profile__avatar {
     margin: 0;
   }
+}
+
+.profile__avatar:hover {
+  background-image: url(../../../images/vector_avatar.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px;
+  background-color: rgba(0, 0, 0, .8);
+  cursor: pointer;
 }

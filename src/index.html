@@ -14,7 +14,7 @@
     <main>
         <section class="profile">
             <div class="profile__container">
-                <div class="profile__avatar"></div>
+                <button class="profile__avatar" name="editButton" type="button" area-lebel="Редактировать фото"></button>
                 <div class="profile__info">
                     <div class="profile__name-edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -61,6 +61,18 @@
             </form>
         </div>
     </div>
+    <div class="popup popup_avatar">
+        <div class="popup__container-avatar">
+            <button type="button" class="popup__close-button"></button>
+            <form class="popup__content popup__content_card-form" name="avatar-form" novalidate>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <input class="popup__input popup__input_type_link" id="link-input" type="url" name="avatar"
+                    placeholder="Ссылка на фото" required>
+                <span class="popup__input-error link-input-error"></span>
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <div class="popup popup_image">
         <div class="popup__container-photo">
             <button type="button" class="popup__close-button"></button>
@@ -71,7 +83,7 @@
     <div class="popup popup_delete">
         <div class="popup__container-delete">
             <button type="button" class="popup__close-button"></button>
-            <form class="popup__content" name="delete-form">
+            <form class="popup__content popup__content_avatar-form" name="delete-form">
                 <h3 class="popup__title">Вы уверены?</h3>
                 <button type="submit" class="popup__save-button">Да</button>
             </form>
@@ -86,8 +98,7 @@
                 <div class="element__like-container">
                     <button type="button" class="element__like"></button>
                     <span class="element__like-counter" type="text" name="likeCounter"></span>
-                </div>
-    
+                </div>    
             </div>
         </article>
     </template>
