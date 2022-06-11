@@ -3,16 +3,16 @@ import {
   profileForm, addCardForm, inputName, inputProf, profileNameSelector, profileProfessionSelector,
   cardsContainer, photoSelector, titleImageSelector, avatarSelector, avatarForm, popupDelete,
   buttonAvatar, config,
-} from './constants.js';
+} from '../utils/constants.js';
 import Card from './Card.js';
-import { FormValidator} from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithSubmit from './PopupWithSubmit.js';
-import UserInfo from './UserInfo.js';
-import '../page/index.css';
-import Api from '../scripts/Api.js';
+import { FormValidator} from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
+import UserInfo from '../components/UserInfo.js';
+import '../pages/index.css';
+import Api from '../components/Api.js';
 
 let userId = null;
 const api = new Api({
