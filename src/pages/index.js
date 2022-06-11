@@ -4,7 +4,7 @@ import {
   cardsContainer, photoSelector, titleImageSelector, avatarSelector, avatarForm, popupDelete,
   buttonAvatar, config,
 } from '../utils/constants.js';
-import Card from './Card.js';
+import Card from '../components/Card.js';
 import { FormValidator} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
