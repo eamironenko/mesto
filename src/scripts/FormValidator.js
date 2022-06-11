@@ -90,6 +90,7 @@ export class FormValidator {
     resetForm = () => {
         this._inputList.forEach((inputElement) => {
             this._hideError(inputElement);
+            console.log(this._inputList)
         });
     };
 }
