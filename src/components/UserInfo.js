@@ -18,6 +18,5 @@ export default class UserInfo {
         this._userName.textContent = data.name;
         this._userProfession.textContent = data.profession;
         this._userAvatar.src = data.avatar;
-        console.log(this._userAvatar.src)
     }
 }
