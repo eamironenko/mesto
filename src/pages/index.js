@@ -11,7 +11,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import UserInfo from '../components/UserInfo.js';
-import '../pages/index.css';
+import './index.css';
 import Api from '../components/Api.js';
 
 let userId = null;
