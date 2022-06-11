@@ -1,15 +1,3 @@
-export const config = {
-    formSelector: '.popup__content',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_inactive',
-    inputErrorClass: 'popup__input-error',
-    activeInputErrorClass: 'popup__input-error_active',
-    errorClass: 'popup__input_type_error',
-    buttonEdit: '.profile__edit-button',
-    buttonAdd: '.profile__add-button',
-};
-
 export class FormValidator {
     constructor(config, formElement) {
         this._formSelector = config.formSelector;
@@ -19,8 +7,6 @@ export class FormValidator {
         this._inputErrorClass = config.inputErrorClass;
         this._activeInputErrorClass = config.activeInputErrorClass;
         this._errorClass = config.errorClass;
-        this._buttonAdd = config.buttonAdd;
-        this._buttonEdit = config.buttonEdit;
         this._formElement = formElement
 
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
@@ -63,7 +49,7 @@ export class FormValidator {
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         })
-        this._setEventListeners(this._formElement);
+        this._setEventListeners();
         this._toggleButtonState(this._formElement);
     };
 
@@ -90,7 +76,6 @@ export class FormValidator {
     resetForm = () => {
         this._inputList.forEach((inputElement) => {
             this._hideError(inputElement);
-            console.log(this._inputList)
         });
     };
 }

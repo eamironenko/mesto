@@ -1,29 +1,12 @@
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+export const config = {
+    formSelector: '.popup__content',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_inactive',
+    inputErrorClass: 'popup__input-error',
+    activeInputErrorClass: 'popup__input-error_active',
+    errorClass: 'popup__input_type_error',
+  };
 
 //Popups:
 export const popupEdit = document.querySelector('.popup_edit');
@@ -31,6 +14,7 @@ export const popupAdd = document.querySelector('.popup_add');
 export const popupImage = document.querySelector('.popup_image');
 export const popupDelete = document.querySelector('.popup_delete');
 export const popupAvatar = document.querySelector('.popup_avatar');
+export const popupSelector = '.popup';
 
 //Кнопоки открытия:
 export const buttonEdit = document.querySelector('.profile__edit-button');
@@ -48,8 +32,8 @@ export const inputProf = profileForm.querySelector('.popup__input_type_professio
 //Добавление карточки
 export const elementsContainer = document.querySelector('.elements');
 export const cardsContainer = '.elements'; //это контейнер
-export const profileName = '.profile__name';
-export const profileProfession = '.profile__subtitle';
+export const profileNameSelector = '.profile__name';
+export const profileProfessionSelector = '.profile__subtitle';
 export const photoSelector = '.popup__photo';
 export const titleImageSelector = '.popup__photo-title';
 export const avatarSelector = '.profile__avatar';

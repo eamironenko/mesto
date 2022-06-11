@@ -1,10 +1,10 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
-    constructor(popupSelector, photoSelector, titleImageSelector) {
-        super(popupSelector);
-        this._photoPopup = document.querySelector(photoSelector);
-        this._titleImagePopup = document.querySelector(titleImageSelector)
+    constructor(popup, photoSelector, titleImageSelector) {
+        super(popup);
+        this._photoPopup = this._popup.querySelector(photoSelector);
+        this._titleImagePopup = this._popup.querySelector(titleImageSelector)
     }
 
     openImage(link, title) {
@@ -12,9 +12,5 @@ export default class PopupWithImage extends Popup {
         this._photoPopup.alt = title;
         this._titleImagePopup.textContent = title;
         super.openPopup();
-    }
-
-    setEventListeners() {
-        super._setEventListeners();
     }
 }
