@@ -11,7 +11,6 @@ export default class Api {
         this.headers = options.headers;
     }
 
-
     //получить данные пользователя(get)
     getUserInformation() {
         return fetch('https://nomoreparties.co/v1/cohort-42/users/me', {
@@ -72,7 +71,7 @@ export default class Api {
         })
             .then(handleResponse)
     }
-
+    //поставить лайк
     handleLikeCard(idCard) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/${idCard}`, {
             method: 'PUT',
@@ -80,7 +79,7 @@ export default class Api {
         })
             .then(handleResponse)
     }
-
+    //удалить лайк
     handleDislikeCard(idCard) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-42/cards/likes/${idCard}`, {
             method: 'DELETE',

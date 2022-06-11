@@ -10,7 +10,6 @@ export default class Card {
         this._cardSelector = cardSelector;
          
         this._handleCardClick = handleCardClick;
-        //this._handleDeleteClick = handleDeleteClick;
         this._handleDeleteClick = handleDeleteClick.bind(this);
         this._handleLikeClick = handleLikeClick.bind(this);
 
@@ -39,11 +38,13 @@ export default class Card {
 
         this._element.querySelector('.element__title').textContent = this._title;
         this._elementImage.alt = this._title;
-        this._elementImage.src = this._link;        
+        this._elementImage.src = this._link;              
 
         this._setEventListeners();
         this._handleDeleteBox();
         this._handleLikes();
+        this.likeCountCard();
+
         return this._element;
     }    
 

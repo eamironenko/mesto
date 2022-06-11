@@ -31,7 +31,7 @@ const api = new Api({
 const userInfo = new UserInfo({ profileName, profileProfession, avatarSelector });
 api.getUserInformation()
   .then((data) => {
-    console.log(data)
+   // console.log(data)
     userInfo.setUserInfo({
       name: data.name,
       profession: data.about,
@@ -94,7 +94,7 @@ buttonAdd.addEventListener('click', () => {
 //POPUP: iMAGE
 //__________________________________________________________________
 const popupWithImage = new PopupWithImage(popupImage, photoSelector, titleImageSelector);
-popupWithImage.close();
+popupWithImage.setEventListeners();
 
 
 //POPUP: АВАТАР
@@ -191,17 +191,17 @@ function createCard(data) {
     },
 
     handleLikeClick: (data) => {
-      if (!card.isLiked()) {
+      if (card.isLiked()) {
+        api.handleDislikeCard(data._id)
+        .then((data) => {
+          card.setLikeCount(data);
+        })
+          .catch((err) => { console.log(err) })
+      } else {
         api.handleLikeCard(data._id)
           .then((data) => {
             card.setLikeCount(data);
-          })
-          .catch((err) => { console.log(err) })
-      } else {
-        api.handleDislikeCard(data._id)
-          .then((data) => {
-            card.setLikeCount(data);
-          })
+          })        
           .catch((err) => { console.log(err) })
       }
     }
@@ -219,4 +219,3 @@ const formProfileValidator = new FormValidator(config, profileForm);
 formProfileValidator.enableValidation();
 const formAvatarValidator = new FormValidator(config, avatarForm);
 formAvatarValidator.enableValidation();
-
