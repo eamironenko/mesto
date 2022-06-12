@@ -32,8 +32,8 @@ export const inputProf = profileForm.querySelector('.popup__input_type_professio
 //Добавление карточки
 export const elementsContainer = document.querySelector('.elements');
 export const cardsContainer = '.elements'; //это контейнер
-export const profileNameSelector = '.profile__name';
-export const profileProfessionSelector = '.profile__subtitle';
+export const nameSelector = '.profile__name';
+export const professionSelector = '.profile__subtitle';
+export const avatarSelector = '.profile__avatar';
 export const photoSelector = '.popup__photo';
 export const titleImageSelector = '.popup__photo-title';
-export const avatarSelector = '.profile__avatar';

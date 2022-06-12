@@ -1,6 +1,6 @@
 import {
-  popupEdit, popupAdd, popupImage, popupAvatar, buttonEdit, buttonAdd,
-  profileForm, addCardForm, inputName, inputProf, profileNameSelector, profileProfessionSelector,
+  popupSelector, popupEdit, popupAdd, popupImage, popupAvatar, buttonEdit, buttonAdd,
+  profileForm, addCardForm, inputName, inputProf, nameSelector, professionSelector,
   cardsContainer, photoSelector, titleImageSelector, avatarSelector, avatarForm, popupDelete,
   buttonAvatar, config,
 } from '../utils/constants.js';
@@ -26,26 +26,25 @@ const api = new Api({
 
 //ЗАПРОС ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 //______________________________________________________________
-const userInfo = new UserInfo({ profileNameSelector, profileProfessionSelector, avatarSelector });
+const userInfo = new UserInfo({ nameSelector, professionSelector, avatarSelector });
 
-Promise.all([api.getUserInformation(), api.getInitialCards()])
+ Promise.all([api.getUserInformation(), api.getInitialCards()])
   .then((data) => {
     userInfo.setUserInfo({
       name: data[0].name,
       profession: data[0].about,
-      //avatar: data[0].avatar
+      avatar: data[0].avatar
     });
-    userInfo.setUserAvatar(data[0].avatar)
     userId = data[0]._id;
     cardList.renderItems(data[1]);
   })
   .catch((err) => { console.log(err) })
 
 
-// POPUP: ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ 
+// POPUP: ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ
 //________________________________________________________________
 const popupWithFormCard = new PopupWithForm({
-  popup: popupAdd,
+  popupSelector: popupAdd,
   handleFormSubmit: (formData) => {
     popupWithFormCard.renderLoading(true);
     const newCard = {
@@ -86,7 +85,7 @@ popupWithImage.setEventListeners();
 //POPUP: АВАТАР
 //_____________________________________________________________
 const popupWithFormAvatar = new PopupWithForm({
-  popup: popupAvatar,
+  popupSelector: popupAvatar,
   handleFormSubmit: (formData) => {
     popupWithFormAvatar.renderLoading(true);
     api.editUserAvatar(formData)
@@ -113,7 +112,7 @@ buttonAvatar.addEventListener('click', () => {
 //POPUP: РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //______________________________________________________________
 const popupWithFormProfile = new PopupWithForm({
-  popup: popupEdit,
+  popupSelector: popupEdit,
   handleFormSubmit: (formData) => {
     popupWithFormProfile.renderLoading(true);
     api.editProfileForm(formData)
@@ -146,7 +145,7 @@ buttonEdit.addEventListener('click', () => {
 //POPUP: УДАЛЕНИЕ 
 //__________________________________________________________________
 const popupWithSubmit = new PopupWithSubmit({
-  popup: popupDelete,
+  popupSelector: popupDelete,
   handleFormSubmit: (data) => {
     popupWithSubmit.renderLoading(true);
     api.handleDeleteCard(data._id)
@@ -173,7 +172,7 @@ function createCard(data) {
     cardSelector: '#card-template',
     userId: userId,
     handleCardClick: (link, title) => {
-      popupWithImage.openImage(title, link);
+      popupWithImage.openPopup(title, link);
     },
     handleDeleteClick: (data) => {
       popupWithSubmit.openPopup(data);
