@@ -33,8 +33,9 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
     userInfo.setUserInfo({
       name: data[0].name,
       profession: data[0].about,
-      avatar: data[0].avatar
+      //avatar: data[0].avatar
     });
+    userInfo.setUserAvatar(data[0].avatar)
     userId = data[0]._id;
     cardList.renderItems(data[1]);
   })
@@ -90,7 +91,7 @@ const popupWithFormAvatar = new PopupWithForm({
     popupWithFormAvatar.renderLoading(true);
     api.editUserAvatar(formData)
       .then((data) => {
-        userInfo.setUserInfo(data);
+        userInfo.setUserAvatar(data);
       })
       .catch((err) => { console.log(err) })
       .finally(() => {
