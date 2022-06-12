@@ -19,7 +19,7 @@ export const popupSelector = '.popup';
 //Кнопоки открытия:
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
-export const buttonAvatar = document.querySelector('.profile__avatar')
+export const buttonAvatar = document.querySelector('.profile__avatar-button')
 //Редактирование профиля страницы:
 export const profileForm = popupEdit.querySelector('.popup__content_profile-form');
 export const addCardForm = popupAdd.querySelector('.popup__content_card-form');

@@ -14,7 +14,10 @@
     <main>
         <section class="profile">
             <div class="profile__container">
-                <button class="profile__avatar" name="editButton" type="button" area-lebel="Редактировать фото"></button>
+                <div class="profile__avatar-border">
+                    <button class="profile__avatar-button" type="button" area-label="Редактировать фото"></button>
+                    <img class="profile__avatar" src="<%=require('./images/kusto.svg')%>" alt="фото пользователя" />
+                </div>
                 <div class="profile__info">
                     <div class="profile__name-edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -98,10 +101,10 @@
                 <div class="element__like-container">
                     <button type="button" class="element__like"></button>
                     <span class="element__like-counter" type="text" name="likeCounter"></span>
-                </div>    
+                </div>
             </div>
         </article>
     </template>
-    </body>
+</body>
 
 </html>
